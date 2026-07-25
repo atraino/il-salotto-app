@@ -1,0 +1,405 @@
+/* Il Salotto: shared styles. Values mirror the design export exactly. */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #EFE9DD;
+  font-family: Karla, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: #C86B4A;
+}
+
+a:hover {
+  color: #A85536;
+}
+
+/* ---------- phone frame ---------- */
+
+/* 412 x 844 is the phone frame including its 11px bezel padding. */
+.ph-fit {
+  width: calc(412px * var(--phone-scale, 1));
+  height: calc(844px * var(--phone-scale, 1));
+  flex: none;
+}
+
+.ph-fit > .ph {
+  transform: scale(var(--phone-scale, 1));
+  transform-origin: top left;
+}
+
+.ph {
+  width: 390px;
+  background: #faf7f0;
+  border-radius: 54px;
+  border: 1px solid rgba(38, 38, 38, .14);
+  box-shadow: 0 12px 32px rgba(38, 38, 38, .1);
+  padding: 11px;
+  flex: none;
+}
+
+.scr {
+  border-radius: 44px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  height: 822px;
+  background: #F6F1E8;
+  position: relative;
+}
+
+.scr--green {
+  background: #2A392C;
+}
+
+/* The scrollable body of a screen, below the status bar and above the nav. */
+.scr-body {
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* In the prototype a screen can outgrow 822px once notes are added. */
+.scr-scroll {
+  overflow-y: auto;
+  scrollbar-width: none;
+}
+
+.scr-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.cap {
+  font: 400 11px Karla, sans-serif;
+  color: rgba(0, 0, 0, .5);
+  margin: 8px 0 0;
+  text-align: center;
+}
+
+/* ---------- gallery chrome ---------- */
+
+.grp {
+  padding: 44px 48px 12px;
+}
+
+.grp-hd {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+}
+
+.grp-num {
+  font: 600 10px ui-monospace, Menlo, monospace;
+  padding: 3px 8px;
+  background: #2A392C;
+  color: #F6F1E8;
+  border-radius: 4px;
+}
+
+.grp-name {
+  font: 500 15px 'Playfair Display', serif;
+  color: #262626;
+  font-style: italic;
+}
+
+.grp-line {
+  flex: 1;
+  height: 1px;
+  background: rgba(38, 38, 38, .12);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 36px;
+  align-items: flex-start;
+}
+
+/* ---------- shared type treatments ---------- */
+
+.gold-caps {
+  font: 600 10px Karla, sans-serif;
+  letter-spacing: 3.5px;
+  color: #C9A24A;
+}
+
+.hairline-gold {
+  flex: 1;
+  height: 1px;
+  background: rgba(201, 162, 74, .45);
+}
+
+/* ---------- buttons ---------- */
+
+.btn-primary {
+  background: #C86B4A;
+  color: #FBF6EC;
+  border: 0;
+  border-radius: 26px;
+  padding: 15px 48px;
+  font: 600 14px Karla, sans-serif;
+  letter-spacing: .5px;
+  font-family: Karla, sans-serif;
+}
+
+.btn-quiet {
+  background: none;
+  border: 0;
+  padding: 0;
+  font: inherit;
+  color: inherit;
+  text-align: inherit;
+}
+
+/* ---------- interactive affordances (prototype only) ---------- */
+
+.live .btn-primary,
+.live .tappable {
+  cursor: pointer;
+  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease, background .16s ease;
+}
+
+.live .btn-primary:hover {
+  filter: brightness(1.06);
+}
+
+.live .btn-primary:active,
+.live .tappable:active {
+  transform: scale(.98);
+}
+
+.live .tappable:hover {
+  filter: brightness(1.02);
+}
+
+.live .card-tappable {
+  cursor: pointer;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+
+.live .card-tappable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(38, 38, 38, .12);
+}
+
+.live .nav-item {
+  cursor: pointer;
+  transition: color .16s ease, opacity .16s ease;
+}
+
+.live .nav-item:hover {
+  opacity: .75;
+}
+
+.live .heart {
+  cursor: pointer;
+  user-select: none;
+  transition: transform .16s ease;
+}
+
+.live .heart:active {
+  transform: scale(1.2);
+}
+
+/* ---------- form fields (login, note composer) ---------- */
+
+.field-input {
+  width: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+  padding: 0;
+  margin-top: 3px;
+  font: 400 14px Lora, serif;
+  color: #F6F1E8;
+}
+
+.field-input::placeholder {
+  color: #B9C4B3;
+}
+
+.field-wrap:focus-within {
+  border-color: rgba(201, 162, 74, .75);
+}
+
+.note-input {
+  width: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+  resize: none;
+  padding: 0;
+  font: italic 400 15px/1.5 'Playfair Display', serif;
+  color: #F6F1E8;
+  height: 74px;
+}
+
+.note-input::placeholder {
+  color: #B9C4B3;
+  font-style: italic;
+}
+
+.share-input {
+  width: 100%;
+  background: none;
+  border: 0;
+  outline: none;
+  padding: 0;
+  font: italic 400 13.5px/1.45 'Playfair Display', serif;
+  color: #4a463f;
+}
+
+.share-input::placeholder {
+  color: #8b8172;
+}
+
+/* ---------- screen transition in the prototype ---------- */
+
+@keyframes screen-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.screen-anim {
+  animation: screen-in .32s ease both;
+}
+
+@keyframes note-in {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+.note-anim {
+  animation: note-in .34s ease both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen-anim,
+  .note-anim {
+    animation: none;
+  }
+}
+
+/* ---------- app shell ---------- */
+
+.shell-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 22px 48px 0;
+}
+
+.shell-title {
+  font: 400 40px/1 Italianno, cursive;
+  color: #2A392C;
+}
+
+.mode-switch {
+  display: flex;
+  gap: 4px;
+  padding: 4px;
+  background: rgba(38, 38, 38, .05);
+  border: 1px solid rgba(38, 38, 38, .1);
+  border-radius: 22px;
+}
+
+.mode-switch button {
+  border: 0;
+  background: none;
+  border-radius: 18px;
+  padding: 8px 18px;
+  font: 500 12.5px Karla, sans-serif;
+  color: #8b8172;
+  cursor: pointer;
+  transition: background .16s ease, color .16s ease;
+}
+
+.mode-switch button:hover {
+  color: #262626;
+}
+
+.mode-switch button[aria-pressed='true'] {
+  background: #2A392C;
+  color: #F6F1E8;
+}
+
+.proto-stage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  padding: 34px 24px 56px;
+}
+
+.proto-hint {
+  font: italic 400 13px 'Playfair Display', serif;
+  color: #8b8172;
+  text-align: center;
+  max-width: 420px;
+}
+
+.proto-reset {
+  background: none;
+  border: 1px solid rgba(38, 38, 38, .15);
+  border-radius: 18px;
+  padding: 7px 16px;
+  font: 500 11.5px Karla, sans-serif;
+  color: #8b8172;
+  cursor: pointer;
+}
+
+.proto-reset:hover {
+  color: #262626;
+  border-color: rgba(38, 38, 38, .3);
+}
+
+/* ---------- small viewports ---------- */
+
+@media (max-width: 760px) {
+  .shell-head {
+    padding: 14px 18px 0;
+    align-items: center;
+  }
+
+  .shell-title {
+    font-size: 34px;
+  }
+
+  /* the phone is the point on a small screen; the blurb can go */
+  .shell-sub {
+    display: none;
+  }
+
+  .grp {
+    padding: 26px 18px 8px;
+  }
+
+  .row {
+    gap: 26px;
+    justify-content: center;
+  }
+
+  .proto-stage {
+    padding: 18px 12px 40px;
+  }
+}
