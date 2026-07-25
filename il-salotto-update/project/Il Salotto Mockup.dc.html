@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet data-dc-atomics>
+<meta name="design_doc_mode" content="canvas">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Lora:ital,wght@0,400;0,500;1,400&family=Karla:wght@400;500;600&family=Italianno&display=swap" rel="stylesheet">
+<style>
+body{margin:0;background:#EFE9DD;font-family:Karla,system-ui,sans-serif}
+a{color:#C86B4A}a:hover{color:#A85536}
+.grp{padding:44px 48px 12px}
+.grp-hd{display:flex;align-items:center;gap:12px;margin:0 0 22px}
+.grp-num{font:600 10px ui-monospace,Menlo,monospace;padding:3px 8px;background:#2A392C;color:#F6F1E8;border-radius:4px}
+.grp-name{font:500 15px 'Playfair Display',serif;color:#262626;font-style:italic}
+.grp-line{flex:1;height:1px;background:rgba(38,38,38,.12)}
+.row{display:flex;flex-wrap:wrap;gap:36px;align-items:flex-start}
+.ph{width:390px;background:#faf7f0;border-radius:54px;border:1px solid rgba(38,38,38,.14);box-shadow:0 12px 32px rgba(38,38,38,.1);padding:11px;flex:none}
+.scr{border-radius:44px;overflow:hidden;display:flex;flex-direction:column;height:822px;background:#F6F1E8}
+.cap{font:400 11px Karla,sans-serif;color:rgba(0,0,0,.5);margin:8px 0 0;text-align:center}
+</style>
+</helmet>
+
+<!-- ================= COVER ================= -->
+<section class="grp" data-screen-label="Cover">
+<div style="width:1250px;background:#2A392C;border-radius:24px;padding:70px 80px;display:flex;gap:70px;align-items:center;box-shadow:0 16px 40px rgba(42,57,44,.25)">
+  <div style="flex:1">
+    <div style="font:600 11px Karla,sans-serif;letter-spacing:4px;color:#C9A24A">YOUR BRIDGE TO ITALY PRESENTS</div>
+    <div style="font:400 96px/0.9 Italianno,cursive;color:#F6F1E8;margin:26px 0 0">Il Salotto</div>
+    <div style="font:italic 400 21px/1.5 'Playfair Display',serif;color:#C9A24A;margin:14px 0 0">The Italian sitting room, where we understand the real Italy together.</div>
+    <p style="font:400 15px/1.75 Lora,serif;color:#D8DCCB;margin:24px 0 0;max-width:520px;text-wrap:pretty">Each month, one door opens. La Porta leads into the real Italy, a book, a city, a film, an artist, a piece of history, daily life. From it, three paths, I Sentieri, wander at your own depth. Notes are left, the room fills, and once a month we gather.</p>
+    <div style="display:flex;gap:26px;margin:32px 0 0;font:500 12px Karla,sans-serif;color:#93a08b"><span>App UI mockup</span><span>&middot;</span><span>Nine screens</span><span>&middot;</span><span>Sample month: Svevo&rsquo;s Trieste</span></div>
+  </div>
+  <div style="flex:none;width:300px;height:440px;border-radius:150px 150px 0 0;border:1px solid rgba(201,162,74,.55);padding:10px">
+    <div style="width:100%;height:100%;border-radius:140px 140px 0 0;background:repeating-linear-gradient(45deg,#374738,#374738 10px,#3E5040 10px,#3E5040 20px);display:flex;align-items:center;justify-content:center"><span style="font:11px ui-monospace,Menlo,monospace;color:#B9C4B3;text-align:center;padding:0 40px">drop: a warm doorway in Italy, light spilling out</span></div>
+  </div>
+</div>
+</section>
+
+<!-- ================= GROUP 0: THE FRONT DOOR ================= -->
+<section class="grp">
+<div class="grp-hd"><span class="grp-num">0</span><span class="grp-name">The front door: landing, joining, logging in</span><span class="grp-line"></span></div>
+<div class="row">
+
+<div data-screen-label="A Landing Hero">
+<div class="ph"><div class="scr" style="background:#2A392C">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#F6F1E8"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #F6F1E8;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#F6F1E8;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:26px 32px 26px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font:600 10px Karla,sans-serif;letter-spacing:3.5px;color:#C9A24A">YOUR BRIDGE TO ITALY</div>
+    <div style="font:400 78px/0.9 Italianno,cursive;color:#F6F1E8;margin:20px 0 0">Il Salotto</div>
+    <div style="margin:14px 0 0;font:italic 400 15px/1.55 'Playfair Display',serif;color:#C9A24A;max-width:296px">The Italian sitting room, where each month we step through one door into the real Italy, and understand it together.</div>
+    <div style="margin:24px 0 0;width:272px;height:296px;border-radius:136px 136px 10px 10px;border:1px solid rgba(201,162,74,.55);padding:8px">
+      <div style="width:100%;height:100%;border-radius:128px 128px 6px 6px;background:repeating-linear-gradient(45deg,#374738,#374738 8px,#3E5040 8px,#3E5040 16px);display:flex;align-items:center;justify-content:center"><span style="font:10px ui-monospace,Menlo,monospace;color:#B9C4B3;padding:0 40px">drop: a cozy room, books, soft light</span></div>
+    </div>
+    <div style="margin:auto 0 0;padding-top:22px;display:flex;flex-direction:column;align-items:center;gap:12px">
+      <div style="background:#C86B4A;color:#FBF6EC;border-radius:26px;padding:15px 48px;font:600 14px Karla,sans-serif;letter-spacing:.5px">Step inside</div>
+      <div style="font:500 12px Karla,sans-serif;color:#93a08b">Already a member? <span style="color:#C9A24A;text-decoration:underline">Log in</span></div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">A &middot; Landing hero</div>
+</div>
+
+<div data-screen-label="B How It Works">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:22px 30px 24px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <h1 style="margin:0;font:500 32px/1.15 'Playfair Display',serif;color:#262626">How it works</h1>
+    <div style="margin:9px 0 0;width:36px;height:1px;background:#C9A24A"></div>
+    <div style="margin:20px 0 0;width:100%"><div style="display:flex;align-items:center;gap:12px;width:100%"><span style="flex:1;height:1px;background:rgba(201,162,74,.45)"></span><span style="font:600 10px Karla,sans-serif;letter-spacing:3.5px;color:#C9A24A">LA PORTA</span><span style="flex:1;height:1px;background:rgba(201,162,74,.45)"></span></div></div>
+    <div style="margin:16px 0 0;width:172px;height:216px;border-radius:86px 86px 6px 6px;border:1px solid rgba(200,107,74,.4);padding:7px"><div style="width:100%;height:100%;border-radius:79px 79px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 8px,#F2EBDD 8px,#F2EBDD 16px);display:flex;align-items:center;justify-content:center"><span style="font:8.5px ui-monospace,Menlo,monospace;color:#9a8f7c;text-align:center;padding:0 20px">drop: a real Italian doorway, warm light</span></div></div>
+    <div style="margin:12px 0 0;font:500 19px/1.25 'Playfair Display',serif;color:#262626">One doorway, each month.</div>
+    <div style="margin:5px 0 0;font:italic 400 13px/1.55 'Playfair Display',serif;color:#6F7D4E">a book, a city, a film, an artist, a piece of history, daily life</div>
+    <div style="margin:22px 0 0;width:100%"><div style="display:flex;align-items:center;gap:12px;width:100%"><span style="flex:1;height:1px;background:rgba(201,162,74,.45)"></span><span style="font:600 10px Karla,sans-serif;letter-spacing:3.5px;color:#C9A24A">I SENTIERI</span><span style="flex:1;height:1px;background:rgba(201,162,74,.45)"></span></div></div>
+    <div style="display:flex;gap:16px;margin:15px 0 0;width:100%">
+      <div style="flex:1"><div style="font:italic 500 16px 'Playfair Display',serif;color:#C86B4A">i</div><div style="margin:4px 0 0;font:500 14px 'Playfair Display',serif;color:#262626">The Book</div><div style="margin:4px 0 0;font:italic 400 11.5px/1.5 'Playfair Display',serif;color:#6F7D4E">why it matters</div></div>
+      <div style="flex:1"><div style="font:italic 500 16px 'Playfair Display',serif;color:#C86B4A">ii</div><div style="margin:4px 0 0;font:500 14px 'Playfair Display',serif;color:#262626">The City</div><div style="margin:4px 0 0;font:italic 400 11.5px/1.5 'Playfair Display',serif;color:#6F7D4E">the real place beneath the postcard</div></div>
+      <div style="flex:1"><div style="font:italic 500 16px 'Playfair Display',serif;color:#C86B4A">iii</div><div style="margin:4px 0 0;font:500 14px 'Playfair Display',serif;color:#262626">The Inner Thread</div><div style="margin:4px 0 0;font:italic 400 11.5px/1.5 'Playfair Display',serif;color:#6F7D4E">what it stirs in you</div></div>
+    </div>
+    <div style="margin:13px 0 0;font:italic 400 13.5px 'Playfair Display',serif;color:#A8863B">Wander the ones that pull you, at your own depth.</div>
+    <div style="margin:auto 0 0;width:100%;border-top:1px solid rgba(38,38,38,.12);padding-top:14px">
+      <div style="font:600 9.5px Karla,sans-serif;letter-spacing:3px;color:#C86B4A">LA CONVERSAZIONE</div>
+      <p style="margin:6px 0 0;font:400 12.5px/1.6 Lora,serif;color:#4a463f">And all month, a warm room of curious people, talking it through together. Italians welcome.</p>
+      <div style="margin:12px 0 0;font:italic 400 13px/1.55 'Playfair Display',serif;color:#8b8172">No pressure, no falling behind. Come as deep as your life allows.</div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">B &middot; How it works</div>
+</div>
+
+<div data-screen-label="C Why Il Salotto">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:24px 32px 26px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font:600 10px Karla,sans-serif;letter-spacing:3.5px;color:#C9A24A">WHY IL SALOTTO</div>
+    <h1 style="margin:10px 0 0;font:500 30px/1.2 'Playfair Display',serif;color:#6F7D4E">The Italy I wish<br>I&rsquo;d known first.</h1>
+    <div style="margin:18px 0 0;width:168px;height:212px;border-radius:84px 84px 6px 6px;border:1px solid rgba(200,107,74,.4);padding:7px"><div style="width:100%;height:100%;border-radius:77px 77px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 8px,#F2EBDD 8px,#F2EBDD 16px);display:flex;align-items:center;justify-content:center"><span style="font:8.5px ui-monospace,Menlo,monospace;color:#9a8f7c;text-align:center;padding:0 18px">drop: you in Italy, or Florence</span></div></div>
+    <p style="margin:18px 0 0;font:400 13.5px/1.75 Lora,serif;color:#262626;text-wrap:pretty">Most people fall in love with a fantasy of Italy, and the fantasy doesn&rsquo;t survive the real country. I know, because I came the same way. Then I spent a year in Florence studying Italy the way Italians study it, a full curriculum with Italian professors: history, literature, politics, art, language, all of it. It changed everything. I finally understood the place underneath the postcard.</p>
+    <p style="margin:12px 0 0;font:400 13.5px/1.75 Lora,serif;color:#262626;text-wrap:pretty">Il Salotto is the thing I wish I&rsquo;d had before I ever came. A door into the real Italy, walked through together.</p>
+    <div style="margin:14px 0 0;font:400 40px/1 Italianno,cursive;color:#C86B4A">Alexis</div>
+    <div style="margin:auto 0 0;padding-top:12px;font:italic 400 13px 'Playfair Display',serif;color:#8b8172">Come sit a while. The door is open.</div>
+  </div>
+</div></div>
+<div class="cap">C &middot; Why Il Salotto</div>
+</div>
+
+<div data-screen-label="D A Peek Inside">
+<div class="ph"><div class="scr" style="background:#2A392C">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#F6F1E8"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #F6F1E8;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#F6F1E8;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:24px 30px 26px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <h1 style="margin:0;font:500 29px/1.15 'Playfair Display',serif;color:#F6F1E8">A look inside this month</h1>
+    <div style="margin:9px 0 0;width:36px;height:1px;background:#C9A24A"></div>
+    <div style="margin:18px 0 0;font:600 9.5px Karla,sans-serif;letter-spacing:3px;color:#C9A24A">LA PORTA DEL MESE</div>
+    <div style="margin:14px 0 0;width:186px;height:216px;border-radius:93px 93px 0 0;border:1px solid rgba(201,162,74,.55);padding:7px">
+      <div style="width:100%;height:100%;border-radius:86px 86px 0 0;background:repeating-linear-gradient(45deg,#374738,#374738 8px,#3E5040 8px,#3E5040 16px);display:flex;align-items:center;justify-content:center"><span style="font:8.5px ui-monospace,Menlo,monospace;color:#B9C4B3;padding:0 24px">drop: Trieste, the sea</span></div>
+    </div>
+    <div style="margin:13px 0 0;font:500 24px/1.15 'Playfair Display',serif;color:#F6F1E8">Svevo&rsquo;s Trieste</div>
+    <div style="margin:5px 0 0;font:italic 400 13.5px 'Playfair Display',serif;color:#C9A24A">The Italy that was barely Italy.</div>
+    <div style="margin:18px 0 0;width:100%;background:#FDFAF3;border-radius:16px;padding:13px 15px;display:flex;gap:13px;align-items:center;text-align:left;box-shadow:0 4px 14px rgba(0,0,0,.18)">
+      <div style="flex:none;width:48px;height:62px;border-radius:24px 24px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 6px,#F2EBDD 6px,#F2EBDD 12px);display:flex;align-items:center;justify-content:center"><span style="font:6.5px ui-monospace,monospace;color:#9a8f7c;text-align:center;padding:0 5px">drop: the book</span></div>
+      <div>
+        <div style="font:600 9px Karla,sans-serif;letter-spacing:2.5px;color:#C9A24A">THE BOOK</div>
+        <div style="font:italic 400 12.5px/1.4 'Playfair Display',serif;color:#4a463f;margin:4px 0 0">Why this novel matters, its humor and its modern soul.</div>
+      </div>
+    </div>
+    <div style="margin:10px 0 0;width:100%;border:1px dashed rgba(201,162,74,.45);border-radius:16px;padding:11px;font:italic 400 13.5px 'Playfair Display',serif;color:#B9C4B3;box-sizing:border-box">and much more inside...</div>
+    <div style="margin:auto 0 0;padding-top:14px;font:italic 400 13.5px/1.6 'Playfair Display',serif;color:#C9A24A">Every past door stays, so the depth<br>grows month over month.</div>
+  </div>
+</div></div>
+<div class="cap">D &middot; A peek inside</div>
+</div>
+
+<div data-screen-label="E Join">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:24px 30px 26px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font:400 42px/1 Italianno,cursive;color:#C86B4A">benvenuta</div>
+    <h1 style="margin:6px 0 0;font:500 29px/1.2 'Playfair Display',serif;color:#262626">Come in and stay a while</h1>
+    <div style="margin:20px 0 0;width:100%;background:#FDFAF3;border:1px solid rgba(201,162,74,.45);border-radius:20px;padding:24px 24px 22px;box-shadow:0 4px 16px rgba(38,38,38,.07);box-sizing:border-box">
+      <div style="font:600 9.5px Karla,sans-serif;letter-spacing:3px;color:#C9A24A">MEMBERSHIP</div>
+      <div style="margin:12px 0 0;font:500 44px/1 'Playfair Display',serif;color:#262626">$8<span style="font:italic 400 16px 'Playfair Display',serif;color:#8b8172"> a month</span></div>
+      <div style="margin:16px 0 0;display:flex;flex-direction:column;gap:10px;text-align:left">
+        <div style="display:flex;gap:9px;align-items:baseline"><span style="color:#C9A24A">&#10038;</span><span style="font:400 13px/1.5 Lora,serif;color:#4a463f">One new door into Italy, every month</span></div>
+        <div style="display:flex;gap:9px;align-items:baseline"><span style="color:#C9A24A">&#10038;</span><span style="font:400 13px/1.5 Lora,serif;color:#4a463f">Three paths to wander at your own depth</span></div>
+        <div style="display:flex;gap:9px;align-items:baseline"><span style="color:#C9A24A">&#10038;</span><span style="font:400 13px/1.5 Lora,serif;color:#4a463f">The room of notes and La Conversazione</span></div>
+        <div style="display:flex;gap:9px;align-items:baseline"><span style="color:#C9A24A">&#10038;</span><span style="font:400 13px/1.5 Lora,serif;color:#4a463f">A live gathering around the table, monthly</span></div>
+        <div style="display:flex;gap:9px;align-items:baseline"><span style="color:#C9A24A">&#10038;</span><span style="font:400 13px/1.5 Lora,serif;color:#4a463f">Every past door, open behind you</span></div>
+      </div>
+    </div>
+    <div style="margin:18px 0 0;font:italic 400 14.5px/1.6 'Playfair Display',serif;color:#6F7D4E;max-width:290px">&ldquo;It feels like being let into someone&rsquo;s home in Italy, not joining a course.&rdquo;</div>
+    <div style="margin:5px 0 0;font:600 9px Karla,sans-serif;letter-spacing:2.5px;color:#9a8f7c">SARAH &middot; MEMBER SINCE MARCH</div>
+    <div style="margin:16px 0 0;width:100%;height:96px;border-radius:48px 48px 8px 8px;border:1px solid rgba(200,107,74,.35);padding:6px;box-sizing:border-box"><div style="width:100%;height:100%;border-radius:42px 42px 5px 5px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 8px,#F2EBDD 8px,#F2EBDD 16px);display:flex;align-items:center;justify-content:center"><span style="font:8.5px ui-monospace,Menlo,monospace;color:#9a8f7c">drop: a table set for friends</span></div></div>
+    <div style="margin:auto 0 0;padding-top:18px;display:flex;flex-direction:column;align-items:center;gap:11px">
+      <div style="background:#C86B4A;color:#FBF6EC;border-radius:26px;padding:15px 46px;font:600 14px Karla,sans-serif;letter-spacing:.5px">Join Il Salotto</div>
+      <div style="font:italic 400 12.5px 'Playfair Display',serif;color:#8b8172">Cancel anytime. Everything opens the moment you&rsquo;re in.</div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">E &middot; Join</div>
+</div>
+
+<div data-screen-label="F Login">
+<div class="ph"><div class="scr" style="background:#2A392C">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#F6F1E8"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #F6F1E8;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#F6F1E8;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:30px 34px 26px;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="width:128px;height:164px;border-radius:64px 64px 5px 5px;border:1px solid rgba(201,162,74,.6);padding:6px"><div style="width:100%;height:100%;border-radius:58px 58px 3px 3px;background:repeating-linear-gradient(45deg,#374738,#374738 8px,#3E5040 8px,#3E5040 16px);display:flex;align-items:center;justify-content:center"><span style="font:8.5px ui-monospace,Menlo,monospace;color:#B9C4B3;text-align:center;padding:0 16px">drop: a door ajar, warm light</span></div></div>
+    <div style="font:400 60px/1 Italianno,cursive;color:#C9A24A;margin:20px 0 0">bentornata</div>
+    <div style="margin:6px 0 0;font:italic 400 14.5px/1.5 'Playfair Display',serif;color:#F6F1E8">The room is just as you left it.</div>
+    <div style="margin:30px 0 0;width:100%;display:flex;flex-direction:column;gap:12px;text-align:left">
+      <div style="background:rgba(246,241,232,.05);border:1px solid rgba(201,162,74,.35);border-radius:14px;padding:15px 18px">
+        <div style="font:600 9px Karla,sans-serif;letter-spacing:2px;color:#C9A24A">EMAIL</div>
+        <div style="font:400 14px Lora,serif;color:#B9C4B3;margin-top:3px">you@somewhere.com</div>
+      </div>
+      <div style="background:rgba(246,241,232,.05);border:1px solid rgba(201,162,74,.35);border-radius:14px;padding:15px 18px">
+        <div style="font:600 9px Karla,sans-serif;letter-spacing:2px;color:#C9A24A">PASSWORD</div>
+        <div style="font:400 14px Lora,serif;color:#B9C4B3;margin-top:3px">&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div>
+      </div>
+    </div>
+    <div style="margin:22px 0 0;width:100%;background:#C86B4A;color:#FBF6EC;border-radius:26px;padding:15px 0;font:600 14px Karla,sans-serif;letter-spacing:.5px;box-sizing:border-box">Log in</div>
+    <div style="margin:18px 0 0;font:500 12px Karla,sans-serif;color:#93a08b">New here? <span style="color:#C9A24A;text-decoration:underline">Create your account</span></div>
+    <div style="margin:auto 0 0;width:100%;border-top:1px solid rgba(201,162,74,.3);padding-top:16px">
+      <div style="font:italic 400 13.5px/1.6 'Playfair Display',serif;color:#B9C4B3">Everything is where you left it:<br>your notes, your paths, the room.</div>
+      <div style="margin:10px 0 0;font:italic 400 12.5px 'Playfair Display',serif;color:#93a08b">It leads straight into this month&rsquo;s Porta.</div>
+    </div>
+  </div>
+</div></div>
+<div class="cap">F &middot; Login</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= GROUP 1: ARRIVE ================= -->
+<section class="grp">
+<div class="grp-hd"><span class="grp-num">I</span><span class="grp-name">Arrive</span><span class="grp-line"></span></div>
+<div class="row">
+
+<div data-screen-label="1 Welcome">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:26px 30px 0;display:flex;flex-direction:column;align-items:center;text-align:center">
+    <div style="font:600 10px Karla,sans-serif;letter-spacing:3.5px;color:#C9A24A">YOUR BRIDGE TO ITALY</div>
+    <div style="font:400 72px/0.9 Italianno,cursive;color:#C86B4A;margin:20px 0 0">Il Salotto</div>
+    <div style="margin:12px 0 0;font:italic 400 15.5px/1.5 'Playfair Display',serif;color:#2A392C;max-width:280px">The Italian sitting room, where we understand the real Italy together.</div>
+    <div style="margin:24px 0 0;width:280px;height:280px;border-radius:140px 140px 12px 12px;border:1px solid rgba(200,107,74,.4);padding:8px">
+      <div style="width:100%;height:100%;border-radius:132px 132px 8px 8px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 9px,#F2EBDD 9px,#F2EBDD 18px);display:flex;align-items:center;justify-content:center"><span style="font:10px ui-monospace,Menlo,monospace;color:#9a8f7c;padding:0 40px">drop: a cozy room, books, soft afternoon light</span></div>
+    </div>
+    <div style="margin:auto 0 0;padding:20px 0 16px;display:flex;flex-direction:column;align-items:center;gap:10px">
+      <div style="background:#C86B4A;color:#FBF6EC;border-radius:26px;padding:15px 42px;font:600 14px Karla,sans-serif;letter-spacing:.5px">Enter this month&rsquo;s Porta</div>
+      <div style="font:italic 400 14px 'Playfair Display',serif;color:#8b8172">This month: Svevo&rsquo;s Trieste</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">1 &middot; Welcome</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= GROUP 2: THE MONTH ================= -->
+<section class="grp">
+<div class="grp-hd"><span class="grp-num">II</span><span class="grp-name">The month: one door, three paths</span><span class="grp-line"></span></div>
+<div class="row">
+
+<div data-screen-label="2 La Porta">
+<div class="ph"><div class="scr" style="background:#2A392C">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#F6F1E8"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #F6F1E8;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#F6F1E8;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:24px 30px 0;display:flex;flex-direction:column;align-items:center">
+    <div style="font:600 10.5px Karla,sans-serif;letter-spacing:4px;color:#C9A24A">LA PORTA DEL MESE</div>
+    <div style="margin:22px 0 0;width:266px;height:420px;border-radius:133px 133px 0 0;border:1px solid rgba(201,162,74,.55);padding:9px;position:relative">
+      <div style="position:absolute;left:-14px;top:120px;bottom:0;width:1px;background:rgba(201,162,74,.25)"></div>
+      <div style="position:absolute;right:-14px;top:120px;bottom:0;width:1px;background:rgba(201,162,74,.25)"></div>
+      <div style="width:100%;height:100%;border-radius:124px 124px 0 0;background:repeating-linear-gradient(45deg,#374738,#374738 9px,#3E5040 9px,#3E5040 18px);overflow:hidden;display:flex;flex-direction:column;justify-content:flex-end;box-sizing:border-box;padding:0 20px 26px;position:relative">
+        <span style="position:absolute;top:88px;left:0;right:0;text-align:center;font:10px ui-monospace,Menlo,monospace;color:#B9C4B3;padding:0 30px">drop: an old doorway in Trieste, warm light inside</span>
+        <h1 style="margin:0;text-align:center;font:500 34px/1.08 'Playfair Display',serif;color:#F6F1E8">Svevo&rsquo;s<br>Trieste</h1>
+        <div style="margin:8px 0 0;text-align:center;font:italic 400 14.5px/1.4 'Playfair Display',serif;color:#C9A24A">The Italy that was barely Italy.</div>
+      </div>
+    </div>
+    <p style="margin:22px 6px 0;font:400 13px/1.7 Lora,serif;color:#D8DCCB;text-align:center;text-wrap:pretty">A port city that spoke four languages and belonged to none of them, and a novel that laughs gently at its own excuses. Step in with us.</p>
+    <div style="margin:16px 0 0;text-align:center;font:italic 500 15.5px/1.5 'Playfair Display',serif;color:#F6F1E8">&ldquo;Life is neither ugly nor beautiful,<br>but it is original.&rdquo;</div>
+    <div style="margin:4px 0 0;font:600 9px Karla,sans-serif;letter-spacing:2.5px;color:#93a08b">ITALO SVEVO</div>
+    <div style="margin:auto 0 0;padding:14px 0 14px;display:flex;flex-direction:column;align-items:center;gap:8px">
+      <div style="background:#C86B4A;color:#FBF6EC;border-radius:26px;padding:14px 44px;font:600 14px Karla,sans-serif;letter-spacing:.5px">Step through</div>
+      <div style="font:italic 400 12.5px 'Playfair Display',serif;color:#93a08b">Three paths wait on the other side.</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(246,241,232,.12)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C9A24A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#93a08b;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#93a08b;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#93a08b;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#93a08b;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#93a08b;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">2 &middot; La Porta</div>
+</div>
+
+<div data-screen-label="3 I Sentieri">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:20px 26px 0;display:flex;flex-direction:column">
+    <div style="font:600 10px Karla,sans-serif;letter-spacing:3.5px;color:#C9A24A;text-align:center">I SENTIERI</div>
+    <h1 style="margin:8px 0 0;text-align:center;font:500 26px/1.2 'Playfair Display',serif;color:#262626">Three paths open. Wander<br>the ones that pull you.</h1>
+    <div style="display:flex;flex-direction:column;gap:12px;margin:18px 0 0">
+      <div style="background:#FDFAF3;border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;box-shadow:0 2px 10px rgba(38,38,38,.05)">
+        <div style="flex:none;width:78px;height:100px;border-radius:39px 39px 6px 6px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 7px,#F2EBDD 7px,#F2EBDD 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;text-align:center;padding:0 8px">drop: the book on a desk</span></div>
+        <div style="flex:1">
+          <div style="font:600 9.5px Karla,sans-serif;letter-spacing:2.5px;color:#C9A24A">THE BOOK</div>
+          <div style="font:italic 400 13.5px/1.45 'Playfair Display',serif;color:#4a463f;margin:5px 0 0">Why this novel matters, its humor and its modern soul.</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin:9px 0 0">
+            <span style="font:600 11.5px Karla,sans-serif;color:#C86B4A">Wander this path &rsaquo;</span>
+            <span style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:3px;background:#6F7D4E"></span><span style="width:6px;height:6px;border-radius:3px;background:#6F7D4E"></span><span style="width:6px;height:6px;border-radius:3px;border:1px solid #6F7D4E;box-sizing:border-box"></span></span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#2A392C;border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;box-shadow:0 4px 14px rgba(42,57,44,.2)">
+        <div style="flex:none;width:78px;height:100px;border-radius:39px 39px 6px 6px;background:repeating-linear-gradient(45deg,#374738,#374738 7px,#3E5040 7px,#3E5040 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#B9C4B3;text-align:center;padding:0 8px">drop: Trieste and the sea</span></div>
+        <div style="flex:1">
+          <div style="font:600 9.5px Karla,sans-serif;letter-spacing:2.5px;color:#C9A24A">THE CITY</div>
+          <div style="font:italic 400 13.5px/1.45 'Playfair Display',serif;color:#F6F1E8;margin:5px 0 0">Trieste, a place that was Austrian, Slovenian, Jewish, and Italian at once.</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin:9px 0 0">
+            <span style="font:600 11.5px Karla,sans-serif;color:#E0885F">Wander this path &rsaquo;</span>
+            <span style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:3px;background:#C9A24A"></span><span style="width:6px;height:6px;border-radius:3px;border:1px solid #C9A24A;box-sizing:border-box"></span><span style="width:6px;height:6px;border-radius:3px;border:1px solid #C9A24A;box-sizing:border-box"></span></span>
+          </div>
+        </div>
+      </div>
+      <div style="background:#FDFAF3;border-radius:18px;padding:14px;display:flex;gap:14px;align-items:center;box-shadow:0 2px 10px rgba(38,38,38,.05)">
+        <div style="flex:none;width:78px;height:100px;border-radius:39px 39px 6px 6px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 7px,#F2EBDD 7px,#F2EBDD 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;text-align:center;padding:0 8px">drop: a window, a chair, soft light</span></div>
+        <div style="flex:1">
+          <div style="font:600 9.5px Karla,sans-serif;letter-spacing:2.5px;color:#C9A24A">THE INNER THREAD</div>
+          <div style="font:italic 400 13.5px/1.45 'Playfair Display',serif;color:#4a463f;margin:5px 0 0">The stories we tell ourselves, and who we become.</div>
+          <div style="display:flex;justify-content:space-between;align-items:center;margin:9px 0 0">
+            <span style="font:600 11.5px Karla,sans-serif;color:#C86B4A">Wander this path &rsaquo;</span>
+            <span style="display:flex;gap:4px"><span style="width:6px;height:6px;border-radius:3px;border:1px solid #6F7D4E;box-sizing:border-box"></span><span style="width:6px;height:6px;border-radius:3px;border:1px solid #6F7D4E;box-sizing:border-box"></span><span style="width:6px;height:6px;border-radius:3px;border:1px solid #6F7D4E;box-sizing:border-box"></span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin:auto 0 0;padding:12px 0 10px;text-align:center;font:italic 400 12.5px 'Playfair Display',serif;color:#8b8172">Everything is open from day one. No falling behind.</div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">3 &middot; I Sentieri</div>
+</div>
+
+<div data-screen-label="4 Inside a Path">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:18px 26px 0;display:flex;flex-direction:column">
+    <div style="display:flex;align-items:center;gap:6px;font:500 11px Karla,sans-serif;color:#8b8172"><span>&lsaquo;</span><span>I Sentieri</span></div>
+    <div style="font:600 10px Karla,sans-serif;letter-spacing:3px;color:#C9A24A;margin:12px 0 0">THE CITY</div>
+    <h1 style="margin:4px 0 0;font:500 30px/1.1 'Playfair Display',serif;color:#262626">Trieste</h1>
+    <div style="margin:8px 0 0;font:italic 400 14px/1.5 'Playfair Display',serif;color:#6F7D4E">A city at the edge of Italy, and never only Italian.</div>
+    <div style="display:flex;flex-direction:column;gap:9px;margin:16px 0 0">
+      <div style="background:#FDFAF3;border-radius:14px;padding:13px 15px;display:flex;gap:13px;align-items:center;box-shadow:0 2px 8px rgba(38,38,38,.04)">
+        <div style="flex:none;width:38px;height:38px;border-radius:19px;background:rgba(111,125,78,.14);display:flex;align-items:center;justify-content:center;color:#6F7D4E"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M10 4c-2-1.5-5-1.5-7 0v12c2-1.5 5-1.5 7 0 2-1.5 5-1.5 7 0V4c-2-1.5-5-1.5-7 0zM10 4v12"></path></svg></div>
+        <div style="flex:1"><div style="font:600 12.5px Karla,sans-serif;color:#262626">A reading</div><div style="font:400 11px Karla,sans-serif;color:#8b8172;margin-top:2px">Trieste, the city that faced away &middot; 12 min</div></div>
+        <span style="color:#C86B4A;font:600 14px Karla,sans-serif">&rsaquo;</span>
+      </div>
+      <div style="background:#FDFAF3;border-radius:14px;padding:13px 15px;display:flex;gap:13px;align-items:center;box-shadow:0 2px 8px rgba(38,38,38,.04)">
+        <div style="flex:none;width:38px;height:38px;border-radius:19px;background:rgba(200,107,74,.13);display:flex;align-items:center;justify-content:center;color:#C86B4A"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="7.5"></circle><path d="M8.5 7l4.5 3-4.5 3z"></path></svg></div>
+        <div style="flex:1"><div style="font:600 12.5px Karla,sans-serif;color:#262626">A short film</div><div style="font:400 11px Karla,sans-serif;color:#8b8172;margin-top:2px">The bora wind through the streets &middot; 6 min</div></div>
+        <span style="color:#C86B4A;font:600 14px Karla,sans-serif">&rsaquo;</span>
+      </div>
+      <div style="background:#FDFAF3;border-radius:14px;padding:13px 15px;display:flex;gap:13px;align-items:center;box-shadow:0 2px 8px rgba(38,38,38,.04)">
+        <div style="flex:none;width:38px;height:38px;border-radius:19px;background:rgba(201,162,74,.16);display:flex;align-items:center;justify-content:center;color:#A8863B"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="12" rx="2"></rect><circle cx="7.5" cy="8.5" r="1.5"></circle><path d="M3 14l4-4 3 3 3-3 4 4"></path></svg></div>
+        <div style="flex:1"><div style="font:600 12.5px Karla,sans-serif;color:#262626">A few photographs</div><div style="font:400 11px Karla,sans-serif;color:#8b8172;margin-top:2px">The canal, the caff&egrave;, the sea &middot; 9 photos</div></div>
+        <span style="color:#C86B4A;font:600 14px Karla,sans-serif">&rsaquo;</span>
+      </div>
+      <div style="background:#FDFAF3;border-radius:14px;padding:13px 15px;display:flex;gap:13px;align-items:center;box-shadow:0 2px 8px rgba(38,38,38,.04)">
+        <div style="flex:none;width:38px;height:38px;border-radius:19px;background:rgba(42,57,44,.1);display:flex;align-items:center;justify-content:center;color:#2A392C"><svg width="17" height="17" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M7 4L3 5.5v10L7 14l6 2 4-1.5v-10L13 6zM7 4v10M13 6v10"></path></svg></div>
+        <div style="flex:1"><div style="font:600 12.5px Karla,sans-serif;color:#262626">A map</div><div style="font:400 11px Karla,sans-serif;color:#8b8172;margin-top:2px">Walk Zeno&rsquo;s Trieste, six places</div></div>
+        <span style="color:#C86B4A;font:600 14px Karla,sans-serif">&rsaquo;</span>
+      </div>
+    </div>
+    <div style="margin:14px 0 0;background:rgba(201,162,74,.1);border:1px solid rgba(201,162,74,.35);border-radius:14px;padding:13px 16px">
+      <div style="font:400 22px/1 Italianno,cursive;color:#A8863B">did you know?</div>
+      <p style="margin:5px 0 0;font:400 12px/1.6 Lora,serif;color:#4a463f">Svevo was James Joyce&rsquo;s English student in Trieste. When Italy ignored his novel, it was Joyce who championed it to the world.</p>
+    </div>
+    <div style="margin:auto 0 0;padding:14px 0 12px;display:flex;align-items:center;justify-content:space-between">
+      <div style="font:italic 400 14.5px 'Playfair Display',serif;color:#2A392C">What did this stir in you?</div>
+      <div style="background:#C86B4A;color:#FBF6EC;border-radius:20px;padding:10px 22px;font:600 12.5px Karla,sans-serif">Leave a note</div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">4 &middot; Inside a path: The City</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= GROUP 3: THE ROOM ================= -->
+<section class="grp">
+<div class="grp-hd"><span class="grp-num">III</span><span class="grp-name">The room: notes and conversation</span><span class="grp-line"></span></div>
+<div class="row">
+
+<div data-screen-label="5 Your Notes">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:20px 24px 0;display:flex;flex-direction:column;gap:13px">
+    <div style="text-align:center">
+      <div style="font:600 10px Karla,sans-serif;letter-spacing:3px;color:#C9A24A">ON THE PATH &middot; THE CITY</div>
+      <h1 style="margin:6px 0 0;font:500 30px/1.1 'Playfair Display',serif;color:#262626">Your notes</h1>
+      <div style="margin:8px auto 0;width:36px;height:1px;background:#C9A24A"></div>
+    </div>
+    <div style="background:#2A392C;border-radius:18px;padding:20px 20px 14px;box-shadow:0 4px 16px rgba(42,57,44,.2)">
+      <div style="font:italic 400 15px/1.5 'Playfair Display',serif;color:#B9C4B3">Write what this path stirred in you...</div>
+      <div style="height:38px"></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(246,241,232,.15);padding-top:12px">
+        <div style="display:flex;align-items:center;gap:6px;color:#C9A24A;font:500 12px Karla,sans-serif"><svg width="15" height="15" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.4"><rect x="2.5" y="5.5" width="15" height="11" rx="2"></rect><circle cx="10" cy="11" r="3"></circle><path d="M7 5.5l1.2-2h3.6l1.2 2"></path></svg>add a photo</div>
+        <div style="background:#C86B4A;color:#FBF6EC;border-radius:18px;padding:8px 20px;font:600 12px Karla,sans-serif">Leave a note</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:1px;background:rgba(38,38,38,.1)"></div><div style="font:italic 400 13px 'Playfair Display',serif;color:#8b8172">the room so far</div><div style="flex:1;height:1px;background:rgba(38,38,38,.1)"></div></div>
+    <div style="display:flex;flex-direction:column;gap:10px">
+      <div style="background:#FDFAF3;border-radius:16px;padding:15px 18px;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 13px 'Playfair Display',serif;color:#262626">Giulia <span style="font:400 10px Karla,sans-serif;color:#9a8f7c">&middot; Torino</span></span><span style="font:500 11px Karla,sans-serif;color:#C86B4A">&hearts; 6</span></div>
+        <p style="margin:7px 0 0;font:400 13px/1.6 Lora,serif;color:#4a463f">I grew up two hours from Trieste and never once thought of it as strange. Reading this, I finally see it.</p>
+      </div>
+      <div style="background:#FDFAF3;border-radius:16px;padding:15px 18px;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="display:flex;justify-content:space-between;align-items:baseline"><span style="font:600 13px 'Playfair Display',serif;color:#262626">Sarah <span style="font:400 10px Karla,sans-serif;color:#9a8f7c">&middot; moving in May</span></span><span style="font:500 11px Karla,sans-serif;color:#C86B4A">&hearts; 11</span></div>
+        <p style="margin:7px 0 0;font:400 13px/1.6 Lora,serif;color:#4a463f">Zeno&rsquo;s last cigarette made me laugh out loud on the train. I have a few last cigarettes of my own.</p>
+      </div>
+      <div style="background:#FDFAF3;border-radius:16px;padding:15px 18px;box-shadow:0 2px 8px rgba(38,38,38,.05);display:flex;gap:12px">
+        <div style="width:56px;height:56px;border-radius:28px 28px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 6px,#F2EBDD 6px,#F2EBDD 12px);flex:none;display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;text-align:center">drop: photo</span></div>
+        <div>
+          <div style="font:600 13px 'Playfair Display',serif;color:#262626">Marta <span style="font:400 10px Karla,sans-serif;color:#9a8f7c">&middot; Trieste</span></div>
+          <p style="margin:6px 0 0;font:400 12.5px/1.55 Lora,serif;color:#4a463f">The bora wind today. Svevo would have held onto his hat.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align:center;font:italic 400 12.5px 'Playfair Display',serif;color:#8b8172;padding-bottom:6px">No pressure here. Wander at your own depth.</div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">5 &middot; Your notes</div>
+</div>
+
+<div data-screen-label="6 La Conversazione">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:18px 24px 0;display:flex;flex-direction:column;gap:11px">
+    <div>
+      <h1 style="margin:0;font:500 30px/1.1 'Playfair Display',serif;color:#262626">La Conversazione</h1>
+      <div style="margin:5px 0 0;font:italic 400 13.5px/1.4 'Playfair Display',serif;color:#6F7D4E">The table where the talk wanders.</div>
+    </div>
+    <div style="background:#FDFAF3;border:1px solid rgba(200,107,74,.3);border-radius:16px;padding:14px 16px;display:flex;justify-content:space-between;align-items:center;gap:12px">
+      <div style="font:italic 400 13.5px/1.45 'Playfair Display',serif;color:#8b8172">What&rsquo;s Italy stirring in you this week? A thought, a photo, a question...</div>
+      <div style="flex:none;background:#C86B4A;color:#FBF6EC;border-radius:17px;padding:8px 18px;font:600 12px Karla,sans-serif">Share</div>
+    </div>
+    <div style="background:rgba(201,162,74,.1);border:1px solid rgba(201,162,74,.4);border-radius:16px;padding:14px 16px">
+      <div style="display:flex;justify-content:space-between;align-items:center"><span style="font:600 13px 'Playfair Display',serif;color:#262626">Alexis <span style="font:400 10px Karla,sans-serif;color:#A8863B">&middot; your host</span></span><span style="font:600 8.5px Karla,sans-serif;letter-spacing:2px;color:#A8863B;border:1px solid rgba(201,162,74,.5);border-radius:9px;padding:3px 8px">PINNED</span></div>
+      <p style="margin:7px 0 0;font:400 12.5px/1.6 Lora,serif;color:#4a463f">Welcome in. Pull up a chair, pour something warm. This is the open room of Il Salotto, where the month&rsquo;s reading meets your Tuesday. Nothing is too small to share.</p>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <div style="background:#FDFAF3;border-radius:15px;padding:13px 16px;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="font:600 12.5px 'Playfair Display',serif;color:#262626">Paola <span style="font:400 10px Karla,sans-serif;color:#9a8f7c">&middot; Roma</span></div>
+        <p style="margin:6px 0 8px;font:400 12.5px/1.55 Lora,serif;color:#4a463f">A question for the non-Italians: what was the first thing about Italy that surprised you, truly?</p>
+        <div style="display:flex;gap:14px;font:500 11px Karla,sans-serif;color:#C86B4A"><span>&hearts; 14</span><span style="color:#8b8172">23 replies</span></div>
+      </div>
+      <div style="background:#FDFAF3;border-radius:15px;padding:13px 16px;box-shadow:0 2px 8px rgba(38,38,38,.05);display:flex;gap:12px">
+        <div style="width:70px;height:70px;border-radius:12px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 7px,#F2EBDD 7px,#F2EBDD 14px);flex:none;display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;text-align:center;padding:0 6px">drop: member photo</span></div>
+        <div style="flex:1">
+          <div style="font:600 12.5px 'Playfair Display',serif;color:#262626">Emma <span style="font:400 10px Karla,sans-serif;color:#9a8f7c">&middot; arrived in March</span></div>
+          <p style="margin:5px 0 7px;font:400 12.5px/1.5 Lora,serif;color:#4a463f">My street market this morning. The tomato man now saves me the good ones.</p>
+          <div style="display:flex;gap:14px;font:500 11px Karla,sans-serif;color:#C86B4A"><span>&hearts; 21</span><span style="color:#8b8172">8 replies</span></div>
+        </div>
+      </div>
+      <div style="background:#FDFAF3;border-radius:15px;padding:13px 16px;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="font:600 12.5px 'Playfair Display',serif;color:#262626">Kate <span style="font:400 10px Karla,sans-serif;color:#9a8f7c">&middot; dreaming from Ohio</span></div>
+        <p style="margin:6px 0 8px;font:400 12.5px/1.55 Lora,serif;color:#4a463f">Did anyone else notice Zeno never actually quits anything? I found that strangely comforting.</p>
+        <div style="display:flex;gap:14px;font:500 11px Karla,sans-serif;color:#C86B4A"><span>&hearts; 9</span><span style="color:#8b8172">5 replies</span></div>
+      </div>
+    </div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">6 &middot; La Conversazione</div>
+</div>
+
+</div>
+</section>
+
+<!-- ================= GROUP 4: THE RHYTHM ================= -->
+<section class="grp" style="padding-bottom:56px">
+<div class="grp-hd"><span class="grp-num">IV</span><span class="grp-name">The rhythm: gathering and archive</span><span class="grp-line"></span></div>
+<div class="row">
+
+<div data-screen-label="7 The Gathering">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:20px 26px 0;display:flex;flex-direction:column;gap:14px">
+    <div style="text-align:center">
+      <div style="font:600 10px Karla,sans-serif;letter-spacing:3px;color:#C9A24A">L&rsquo;INCONTRO</div>
+      <h1 style="margin:6px 0 0;font:500 28px/1.15 'Playfair Display',serif;color:#262626">We gather once a month</h1>
+    </div>
+    <div style="background:#2A392C;border-radius:20px;padding:22px 22px 20px;box-shadow:0 6px 20px rgba(42,57,44,.22);text-align:center">
+      <div style="font:600 9.5px Karla,sans-serif;letter-spacing:3px;color:#C9A24A">THIS MONTH&rsquo;S CONVERSATION</div>
+      <div style="margin:12px 0 0;font:500 24px/1.2 'Playfair Display',serif;color:#F6F1E8">Svevo&rsquo;s Trieste,<br>around the table</div>
+      <div style="margin:12px 0 0;font:500 13px Karla,sans-serif;color:#D8DCCB">Sunday, July 26 &middot; 6:00 pm CET &middot; on Zoom</div>
+      <div style="margin:16px auto 0;background:#C86B4A;color:#FBF6EC;border-radius:24px;padding:13px 34px;font:600 13.5px Karla,sans-serif;display:inline-block">Join the conversation</div>
+      <div style="margin:12px 0 0;font:italic 400 12.5px/1.5 'Playfair Display',serif;color:#93a08b">Everyone brings their own read.<br>Italians welcome too.</div>
+    </div>
+    <div style="display:flex;align-items:center;gap:10px"><div style="flex:1;height:1px;background:rgba(38,38,38,.1)"></div><div style="font:italic 400 13px 'Playfair Display',serif;color:#8b8172">the depth so far</div><div style="flex:1;height:1px;background:rgba(38,38,38,.1)"></div></div>
+    <div style="display:flex;flex-direction:column;gap:9px">
+      <div style="background:#FDFAF3;border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(38,38,38,.04)">
+        <div><div style="font:600 12.5px Karla,sans-serif;color:#262626">Past gatherings</div><div style="font:400 11px Karla,sans-serif;color:#8b8172;margin-top:2px">Six conversations, recorded and kept</div></div>
+        <span style="color:#C86B4A;font:600 14px Karla,sans-serif">&rsaquo;</span>
+      </div>
+      <div style="background:#FDFAF3;border-radius:14px;padding:13px 16px;display:flex;justify-content:space-between;align-items:center;box-shadow:0 2px 8px rgba(38,38,38,.04)">
+        <div><div style="font:600 12.5px Karla,sans-serif;color:#262626">Past doors</div><div style="font:400 11px Karla,sans-serif;color:#8b8172;margin-top:2px">Every month stays open behind you</div></div>
+        <span style="color:#C86B4A;font:600 14px Karla,sans-serif">&rsaquo;</span>
+      </div>
+    </div>
+    <div style="margin:auto 0 0;padding-bottom:10px;text-align:center;font:italic 400 12.5px 'Playfair Display',serif;color:#8b8172">Come as deep as your life allows this month.</div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">7 &middot; The Gathering</div>
+</div>
+
+<div data-screen-label="8 The Archive">
+<div class="ph"><div class="scr">
+  <div style="display:flex;justify-content:space-between;align-items:center;padding:16px 30px 4px;font:600 13px Karla,sans-serif;color:#262626"><span>9:41</span><span style="width:16px;height:9px;border:1px solid #262626;border-radius:2.5px;display:inline-block;position:relative"><span style="position:absolute;inset:1.5px 4px 1.5px 1.5px;background:#262626;border-radius:1px"></span></span></div>
+  <div style="flex:1;overflow:hidden;padding:20px 26px 0;display:flex;flex-direction:column">
+    <div style="font:600 10px Karla,sans-serif;letter-spacing:3px;color:#C9A24A;text-align:center">L&rsquo;ARCHIVIO</div>
+    <h1 style="margin:8px 0 0;text-align:center;font:500 27px/1.2 'Playfair Display',serif;color:#262626">The doors we&rsquo;ve<br>walked through</h1>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:18px 0 0">
+      <div style="background:#2A392C;border-radius:16px;padding:12px;text-align:center;box-shadow:0 4px 12px rgba(42,57,44,.2)">
+        <div style="width:100%;height:110px;border-radius:55px 55px 4px 4px;background:repeating-linear-gradient(45deg,#374738,#374738 7px,#3E5040 7px,#3E5040 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#B9C4B3;padding:0 12px">drop: Trieste</span></div>
+        <div style="font:600 8.5px Karla,sans-serif;letter-spacing:2px;color:#C9A24A;margin:9px 0 0">JULY &middot; NOW OPEN</div>
+        <div style="font:500 14px/1.25 'Playfair Display',serif;color:#F6F1E8;margin:4px 0 2px">Svevo&rsquo;s Trieste</div>
+      </div>
+      <div style="background:#FDFAF3;border-radius:16px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="width:100%;height:110px;border-radius:55px 55px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 7px,#F2EBDD 7px,#F2EBDD 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;padding:0 12px">drop: Sicily</span></div>
+        <div style="font:600 8.5px Karla,sans-serif;letter-spacing:2px;color:#A8863B;margin:9px 0 0">JUNE</div>
+        <div style="font:500 14px/1.25 'Playfair Display',serif;color:#262626;margin:4px 0 2px">The Leopard&rsquo;s Sicily</div>
+        <div style="font:500 10px Karla,sans-serif;color:#C86B4A">revisit &rsaquo;</div>
+      </div>
+      <div style="background:#FDFAF3;border-radius:16px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="width:100%;height:110px;border-radius:55px 55px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 7px,#F2EBDD 7px,#F2EBDD 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;padding:0 12px">drop: Naples</span></div>
+        <div style="font:600 8.5px Karla,sans-serif;letter-spacing:2px;color:#A8863B;margin:9px 0 0">MAY</div>
+        <div style="font:500 14px/1.25 'Playfair Display',serif;color:#262626;margin:4px 0 2px">Ferrante&rsquo;s Naples</div>
+        <div style="font:500 10px Karla,sans-serif;color:#C86B4A">revisit &rsaquo;</div>
+      </div>
+      <div style="background:#FDFAF3;border-radius:16px;padding:12px;text-align:center;box-shadow:0 2px 8px rgba(38,38,38,.05)">
+        <div style="width:100%;height:110px;border-radius:55px 55px 4px 4px;background:repeating-linear-gradient(45deg,#EDE4D3,#EDE4D3 7px,#F2EBDD 7px,#F2EBDD 14px);display:flex;align-items:center;justify-content:center"><span style="font:7.5px ui-monospace,monospace;color:#9a8f7c;padding:0 12px">drop: Rimini</span></div>
+        <div style="font:600 8.5px Karla,sans-serif;letter-spacing:2px;color:#A8863B;margin:9px 0 0">APRIL</div>
+        <div style="font:500 14px/1.25 'Playfair Display',serif;color:#262626;margin:4px 0 2px">Fellini&rsquo;s Rimini</div>
+        <div style="font:500 10px Karla,sans-serif;color:#C86B4A">revisit &rsaquo;</div>
+      </div>
+    </div>
+    <div style="margin:auto 0 0;padding:14px 0 10px;text-align:center;font:italic 400 12.5px 'Playfair Display',serif;color:#8b8172">Seven doors so far. The room keeps growing.</div>
+  </div>
+  <div style="display:flex;justify-content:space-around;align-items:center;padding:10px 6px 22px;border-top:1px solid rgba(38,38,38,.08)">
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M5 17V9a5 5 0 0 1 10 0v8"></path><path d="M3 17h14"></path></svg><span style="font:500 7.5px Karla,sans-serif">This Month</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 17c6-2 2-7 7-8 4-.8 4-4 4-6"></path><circle cx="4" cy="17" r="1.2"></circle><circle cx="15" cy="3" r="1.2"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Paths</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><path d="M4 16l1-4 9-9 3 3-9 9-4 1z"></path></svg><span style="font:500 7.5px Karla,sans-serif">Notes</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><circle cx="10" cy="10" r="6.5"></circle><circle cx="10" cy="4" r="1"></circle><circle cx="16" cy="10" r="1"></circle><circle cx="10" cy="16" r="1"></circle><circle cx="4" cy="10" r="1"></circle></svg><span style="font:500 7.5px Karla,sans-serif">Conversazione</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#8b8172;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="4" width="14" height="13" rx="1.5"></rect><path d="M3 8h14M7 2.5V5M13 2.5V5"></path></svg><span style="font:500 7.5px Karla,sans-serif">Gathering</span></div>
+    <div style="display:flex;flex-direction:column;align-items:center;gap:3px;color:#C86B4A;width:58px"><svg width="19" height="19" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.3"><rect x="3" y="7" width="14" height="9" rx="1"></rect><path d="M3 7l1.5-3h11L17 7M8 11h4"></path></svg><span style="font:500 7.5px Karla,sans-serif">Archive</span></div>
+  </div>
+</div></div>
+<div class="cap">8 &middot; The Archive</div>
+</div>
+
+</div>
+</section>
+
+</x-dc>
+</body>
+</html>
