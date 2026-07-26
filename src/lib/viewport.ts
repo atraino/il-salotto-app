@@ -26,33 +26,18 @@ export function lockViewport() {
     { passive: false },
   )
 
-  trackHeight()
 }
 
-/**
- * Publish the real height of the window as --app-h.
+/*
+ * There is deliberately no height measurement here any more.
  *
- * Every CSS way of asking "how tall is the screen" has let us down on iOS in
- * turn. 100dvh disagreed with the visible area as the toolbars moved; a chain
- * of height: 100% then broke wherever an ancestor had no height of its own;
- * and in an installed app neither reliably reaches the bottom of the display,
- * which is what left a band of page background under every screen.
+ * This module used to publish window.innerHeight for the layout to use, which
+ * seemed like the one honest number available. It is not: in an installed iOS
+ * app innerHeight leaves out the status bar and reports 823 on an 874 point
+ * screen, while viewport-fit=cover still draws the app from the very top. The
+ * app therefore started at the top, believed it was 823 tall, and left 51
+ * points of page background along the bottom of every screen.
  *
- * window.innerHeight is a number the browser has to be honest about, so the
- * layout is driven from that instead, and re-read whenever it can change.
- * Screens keep the home indicator clear with env(safe-area-inset-bottom).
+ * The layout is pinned with position: fixed and inset: 0 instead, which is the
+ * viewport by definition and needs no number at all. See styles.css.
  */
-function trackHeight() {
-  const apply = () => {
-    const height = window.visualViewport?.height ?? window.innerHeight
-    document.documentElement.style.setProperty('--app-h', `${Math.round(height)}px`)
-  }
-
-  apply()
-  window.addEventListener('resize', apply)
-  window.addEventListener('orientationchange', apply)
-  // iOS settles its chrome after the rotation event, not during it.
-  window.addEventListener('orientationchange', () => window.setTimeout(apply, 300))
-  window.visualViewport?.addEventListener('resize', apply)
-  window.addEventListener('pageshow', apply)
-}

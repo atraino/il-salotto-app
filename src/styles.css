@@ -428,17 +428,21 @@ button {
    * .scr-body below.
    */
   /*
-   * --app-h is window.innerHeight, published by lib/viewport.ts.
+   * Do not measure the height. Pin the app instead — see .proto-stage below.
    *
-   * Every CSS way of asking how tall the screen is has failed here in turn:
-   * 100dvh disagreed with the visible area, and a chain of height: 100% broke
-   * at .screen-anim and still did not reach the bottom of an installed app.
-   * A measured pixel value cannot drift. The 100% fallbacks are there for the
-   * first paint, before the script has run.
+   * This went wrong three times. 100dvh disagreed with the visible area as the
+   * toolbars moved. A chain of height: 100% broke at .screen-anim. Then
+   * window.innerHeight looked like the honest answer and was the subtlest trap
+   * of the three: in an installed app iOS reports 823 on an 874 point screen,
+   * because it leaves out the status bar — while the app is still drawn from
+   * the very top under viewport-fit=cover. So the app began at y=0, was told
+   * it was 823 tall, and stopped 51 points short of the bottom. That gap was
+   * the tan band, and 823 is why it looked so much like the 822 the screens
+   * were originally drawn at.
    */
   html,
   body {
-    height: var(--app-h, 100%);
+    height: 100%;
     overflow: hidden;
   }
 
@@ -562,7 +566,7 @@ button {
 
   html,
   body {
-    height: var(--app-h, 100%);
+    height: 100%;
     overflow: hidden;
   }
 
