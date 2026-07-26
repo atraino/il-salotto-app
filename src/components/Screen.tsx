@@ -61,6 +61,7 @@ export function BackLink({
   label: string
   tone?: Tone
 }) {
+  const green = tone === 'green'
   return (
     <button
       type="button"
@@ -68,18 +69,26 @@ export function BackLink({
       aria-label={`Back to ${label}`}
       onClick={go && (() => go(to))}
       style={{
+        /*
+         * Top left, and unmistakably a button. A bare grey chevron was easy to
+         * miss, and someone who cannot find the way back reads the app as one
+         * that will not let them out.
+         */
         alignSelf: 'flex-start',
-        display: 'flex',
+        display: 'inline-flex',
         alignItems: 'center',
-        gap: 5,
-        font: `500 11.5px ${font.ui}`,
-        color: tone === 'green' ? color.mutedGreen : color.muted,
+        gap: 6,
+        padding: '7px 15px 7px 11px',
+        borderRadius: 20,
+        border: green ? '1px solid rgba(201,162,74,.6)' : '1px solid rgba(200,107,74,.5)',
+        background: green ? 'rgba(246,241,232,.1)' : 'rgba(200,107,74,.09)',
+        font: `600 12px ${font.ui}`,
+        color: green ? color.gold : color.terracotta,
         flex: 'none',
-        padding: '2px 6px 2px 0',
       }}
     >
-      <span style={{ fontSize: 16, lineHeight: 1 }}>&lsaquo;</span>
-      <span>{label}</span>
+      <span aria-hidden style={{ fontSize: 15, lineHeight: 1, marginTop: -1 }}>&#8592;</span>
+      <span>Back</span>
     </button>
   )
 }

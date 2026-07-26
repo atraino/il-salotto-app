@@ -71,44 +71,32 @@ export function HowItWorks({ go }: ScreenProps) {
         ))}
       </div>
 
-      {/*
-        What a member actually gets. People assume a reading group means a
-        reading list and a lot of homework; here the month arrives already
-        filled in, and the only thing anyone might buy is the novel itself,
-        and only if they would rather hold it.
-      */}
+      {/* one warm line, in Alexis's words, about what the month arrives holding */}
       <div
         style={{
           margin: '12px 0 0',
           width: '100%',
-          background: 'rgba(201,162,74,.1)',
-          border: '1px solid rgba(201,162,74,.38)',
-          borderRadius: 14,
-          padding: '11px 14px',
+          borderTop: '1px solid rgba(201,162,74,.4)',
+          borderBottom: '1px solid rgba(201,162,74,.4)',
+          padding: '11px 6px',
+          font: `italic 400 13px/1.55 ${font.serif}`,
+          color: color.goldDeep,
           flex: 'none',
         }}
       >
-        <div style={{ font: `600 9px ${font.ui}`, letterSpacing: 2.4, color: color.goldDeep }}>
-          EVERYTHING IS PROVIDED
-        </div>
-        <p style={{ margin: '5px 0 0', font: `400 11px/1.6 ${font.body}`, color: color.inkSoft }}>
-          I gather and write the whole month for you: the readings, the films, the photographs, the history and the
-          notes to go with them, all here to read and explore. The only thing you might buy is the novel itself, and
-          only if you would rather hold a paper copy.
-        </p>
+        Each month, one doorway into Italy, and everything you need to step through it.
       </div>
 
       <div
         style={{
           margin: 'auto 0 0',
           width: '100%',
-          borderTop: '1px solid rgba(38,38,38,.12)',
           paddingTop: 10,
           flex: 'none',
         }}
       >
         <div style={{ font: `600 9px ${font.ui}`, letterSpacing: 3, color: color.terracotta }}>LA CONVERSAZIONE</div>
-        <p style={{ margin: '5px 0 0', font: `400 11.5px/1.55 ${font.body}`, color: color.inkSoft }}>
+        <p style={{ margin: '5px 0 0', font: `400 11.5px/1.5 ${font.body}`, color: color.inkSoft }}>
           And all month, together: a warm room of curious people, talking it through. Italians welcome.
         </p>
         <button

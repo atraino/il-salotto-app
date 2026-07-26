@@ -9,11 +9,14 @@ import type { ScreenProps } from '../navigation'
  * one screen; if something has to give, move the type, not the words.
  */
 const paragraph = {
-  margin: '10px 0 0',
+  margin: '10px auto 0',
   font: `400 11px/1.62 ${font.body}`,
   color: color.ink,
-  textAlign: 'left',
-  textWrap: 'pretty',
+  /* centred under the centred photograph, on a measure narrow enough that the
+     ragged edges stay even instead of wandering */
+  textAlign: 'center',
+  maxWidth: 302,
+  textWrap: 'balance',
 } as const
 
 /** C. Why Il Salotto: a letter from the host, not a sales pitch. */
