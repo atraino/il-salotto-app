@@ -30,6 +30,7 @@ export function HowItWorks({ go }: ScreenProps) {
 
       <PhotoFrame
         label="drop: a real Italian doorway, warm light"
+        photo="doorway"
         width={160}
         height={200}
         radius="80px 80px 6px 6px"

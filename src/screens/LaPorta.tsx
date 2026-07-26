@@ -6,7 +6,24 @@ import type { ScreenProps } from '../navigation'
 /** 2. La Porta: this month's doorway, an arch you stand before and walk through. */
 export function LaPorta({ go }: ScreenProps) {
   return (
-    <Screen tone="green" nav="thisMonth" go={go} bodyStyle={{ padding: '24px 30px 0', alignItems: 'center' }}>
+    <Screen tone="green" nav="home" go={go} bodyStyle={{ padding: '24px 30px 0', alignItems: 'center' }}>
+      <button
+        type="button"
+        className="btn-quiet tappable"
+        onClick={go && (() => go('home'))}
+        style={{
+          alignSelf: 'flex-start',
+          display: 'flex',
+          alignItems: 'center',
+          gap: 6,
+          font: `500 11px ${font.ui}`,
+          color: color.mutedGreen,
+          marginBottom: 10,
+        }}
+      >
+        <span>&lsaquo;</span>
+        <span>Il Salotto</span>
+      </button>
       <GoldCaps size={10.5} spacing={4}>
         LA PORTA DEL MESE
       </GoldCaps>
@@ -30,7 +47,7 @@ export function LaPorta({ go }: ScreenProps) {
             width: '100%',
             height: '100%',
             borderRadius: '124px 124px 0 0',
-            background: stripes('green', 9),
+            background: `linear-gradient(rgba(20,28,21,.62), rgba(20,28,21,.62)), url(/photos/trieste-doorway.jpg) center/cover, ${stripes('green', 9)}`,
             overflow: 'hidden',
             display: 'flex',
             flexDirection: 'column',

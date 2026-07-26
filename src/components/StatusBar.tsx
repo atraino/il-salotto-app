@@ -6,6 +6,7 @@ export function StatusBar({ tone = 'cream' }: { tone?: Tone }) {
   const ink = tone === 'green' ? color.cream : color.ink
   return (
     <div
+      className="status-bar"
       style={{
         display: 'flex',
         justifyContent: 'space-between',

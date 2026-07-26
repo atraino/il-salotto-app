@@ -4,7 +4,7 @@ import { navTarget, type NavId, type ScreenId } from '../navigation'
 import type { Tone } from './PhotoFrame'
 
 const items: { id: NavId; label: string }[] = [
-  { id: 'thisMonth', label: 'This Month' },
+  { id: 'home', label: 'Il Salotto' },
   { id: 'paths', label: 'Paths' },
   { id: 'notes', label: 'Notes' },
   { id: 'conversazione', label: 'Conversazione' },

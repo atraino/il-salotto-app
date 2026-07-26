@@ -14,18 +14,21 @@ export function PeekInside({ go }: ScreenProps) {
         LA PORTA DEL MESE
       </GoldCaps>
 
-      <PhotoFrame
-        tone="green"
-        label="drop: Trieste, the sea"
-        width={186}
-        height={216}
-        radius="93px 93px 0 0"
-        innerRadius="86px 86px 0 0"
-        border="1px solid rgba(201,162,74,.55)"
-        pad={7}
-        labelPad={24}
-        style={{ margin: '14px 0 0' }}
-      />
+      <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '12px 0 2px', minHeight: 0 }}>
+        <PhotoFrame
+          tone="green"
+          label="drop: Trieste, the sea"
+          photo="trieste"
+          width="auto"
+          height="100%"
+          radius="93px 93px 0 0"
+          innerRadius="86px 86px 0 0"
+          border="1px solid rgba(201,162,74,.55)"
+          pad={7}
+          labelPad={24}
+          style={{ aspectRatio: '186 / 216', maxHeight: 220, minHeight: 132 }}
+        />
+      </div>
       <div style={{ margin: '13px 0 0', font: `500 24px/1.15 ${font.serif}`, color: color.cream }}>
         Svevo&rsquo;s Trieste
       </div>
@@ -49,6 +52,8 @@ export function PeekInside({ go }: ScreenProps) {
       >
         <PhotoFrame
           label="drop: the book"
+          photo="book-cover"
+          fit="contain"
           width={48}
           height={62}
           radius="24px 24px 4px 4px"

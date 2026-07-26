@@ -59,21 +59,22 @@ export function Join({ go }: ScreenProps) {
         SARAH &middot; MEMBER SINCE MARCH
       </div>
 
+      <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', width: '100%', minHeight: 0, padding: '14px 0 2px' }}>
       <PhotoFrame
         label="drop: a table set for friends"
         width="100%"
-        height={96}
+        height="100%"
         radius="48px 48px 8px 8px"
         innerRadius="42px 42px 5px 5px"
         border="1px solid rgba(200,107,74,.35)"
         pad={6}
-        style={{ margin: '16px 0 0' }}
+        style={{ maxHeight: 104, minHeight: 62 }}
       />
+      </div>
 
       <div
         style={{
-          margin: 'auto 0 0',
-          paddingTop: 18,
+          paddingTop: 4,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',

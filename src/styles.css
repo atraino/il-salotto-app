@@ -158,7 +158,24 @@ a:hover {
   text-align: inherit;
 }
 
-/* ---------- interactive affordances (prototype only) ---------- */
+/* ---------- interactive affordances ---------- */
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.live button,
+.live .card-tappable,
+.live .heart {
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: 2px solid #C9A24A;
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
 
 .live .btn-primary,
 .live .tappable {
@@ -351,6 +368,13 @@ a:hover {
   padding: 34px 24px 56px;
 }
 
+.proto-chrome {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 .proto-hint {
   font: italic 400 13px 'Playfair Display', serif;
   color: #8b8172;
@@ -400,6 +424,60 @@ a:hover {
   }
 
   .proto-stage {
-    padding: 18px 12px 40px;
+    padding: 0;
+    gap: 0;
+  }
+
+  /* on a phone the app should be the only thing on screen */
+  .proto-chrome {
+    display: none;
+  }
+
+  /* full bleed: no bezel, no scaling, the screen simply is the screen */
+  .proto-stage .ph-fit {
+    width: 100%;
+    height: auto;
+  }
+
+  .proto-stage .ph {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    border-radius: 0;
+    background: none;
+    box-shadow: none;
+    transform: none;
+  }
+
+  .proto-stage .scr {
+    border-radius: 0;
+    height: calc(100dvh - var(--app-chrome, 52px));
+  }
+
+  /* the phone draws its own status bar above us; keep the space, drop the mockup one */
+  .proto-stage .status-bar {
+    visibility: hidden;
+  }
+
+  /* every screen scrolls on a short phone, the nav stays put */
+  .proto-stage .scr-body {
+    overflow-y: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .proto-stage .scr-body::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Installed to the home screen: no browser chrome, so no app chrome either. */
+@media (display-mode: standalone) {
+  .shell-head {
+    display: none;
+  }
+
+  .proto-stage .scr {
+    height: 100dvh;
   }
 }

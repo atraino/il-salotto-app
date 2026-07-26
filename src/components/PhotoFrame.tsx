@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import { useState, type CSSProperties, type ReactNode } from 'react'
 import { color, font } from '../theme'
 
 export type Tone = 'cream' | 'green'
@@ -16,6 +16,14 @@ export function placeholderInk(tone: Tone): string {
 type PhotoFrameProps = {
   /** The drop-zone instruction, e.g. "drop: a cozy room, books, soft light". */
   label: string
+  /**
+   * Basename of a real photo in public/photos, without extension. When the file
+   * is there it fills the frame; when it isn't, the labeled placeholder shows,
+   * so the app is never broken by a missing image.
+   */
+  photo?: string
+  /** "contain" keeps a whole book cover visible; "cover" fills the arch. */
+  fit?: 'cover' | 'contain'
   tone?: Tone
   width?: number | string
   height: number | string
@@ -43,6 +51,8 @@ type PhotoFrameProps = {
  */
 export function PhotoFrame({
   label,
+  photo,
+  fit = 'cover',
   tone = 'cream',
   width,
   height,
@@ -57,20 +67,32 @@ export function PhotoFrame({
   plateStyle,
   children,
 }: PhotoFrameProps) {
+  const [missing, setMissing] = useState(false)
+  const showPhoto = Boolean(photo) && !missing
+
   const plate = (
     <div
       style={{
         width: '100%',
         height: '100%',
         borderRadius: innerRadius ?? radius,
-        background: stripes(tone, stripe),
+        background: showPhoto ? undefined : stripes(tone, stripe),
+        overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
         ...plateStyle,
       }}
     >
-      {children ?? (
+      {showPhoto && (
+        <img
+          src={`/photos/${photo}.jpg`}
+          alt={label.replace(/^drop:\s*/, '')}
+          onError={() => setMissing(true)}
+          style={{ width: '100%', height: '100%', objectFit: fit, display: 'block' }}
+        />
+      )}
+      {!showPhoto && (children ?? (
         <span
           style={{
             font: `${labelSize}px ${font.mono}`,
@@ -81,7 +103,7 @@ export function PhotoFrame({
         >
           {label}
         </span>
-      )}
+      ))}
     </div>
   )
 

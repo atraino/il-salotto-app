@@ -2,27 +2,16 @@ import { useState } from 'react'
 import { Screen } from '../components/Screen'
 import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
+import { useRoom, type Sample } from '../lib/room'
 import type { ScreenProps } from '../navigation'
 
-type Post = {
-  id: string
-  name: string
-  where: string
-  text: string
-  hearts: number
-  replies: number
-  photo?: string
-  fresh?: boolean
-}
-
-const table: Post[] = [
+const table: Sample[] = [
   {
     id: 'paola',
     name: 'Paola',
     where: 'Roma',
     text: 'A question for the non-Italians: what was the first thing about Italy that surprised you, truly?',
     hearts: 14,
-    replies: 23,
   },
   {
     id: 'emma',
@@ -30,7 +19,6 @@ const table: Post[] = [
     where: 'arrived in March',
     text: 'My street market this morning. The tomato man now saves me the good ones.',
     hearts: 21,
-    replies: 8,
     photo: 'drop: member photo',
   },
   {
@@ -39,37 +27,27 @@ const table: Post[] = [
     where: 'dreaming from Ohio',
     text: 'Did anyone else notice Zeno never actually quits anything? I found that strangely comforting.',
     hearts: 9,
-    replies: 5,
   },
 ]
+
+/** Replies and photos belong to the sample table until threads are built. */
+const sampleReplies: Record<string, number> = { paola: 23, emma: 8, kate: 5 }
+const samplePhotos: Record<string, string> = { emma: 'drop: member photo' }
 
 const prompt = 'What’s Italy stirring in you this week? A thought, a photo, a question...'
 
 /** 6. La Conversazione: the open room, warmer and busier than the notes page. */
 export function LaConversazione({ go }: ScreenProps) {
-  const [posts, setPosts] = useState(table)
+  const { entries, write, toggleHeart } = useRoom('posts', table)
   const [draft, setDraft] = useState('')
-  const [hearted, setHearted] = useState<Record<string, boolean>>({})
 
-  const share = () => {
-    const text = draft.trim()
-    if (!text) return
-    setPosts((current) => [
-      { id: `you-${current.length}`, name: 'You', where: 'just now', text, hearts: 0, replies: 0, fresh: true },
-      ...current,
-    ])
+  const share = async () => {
+    await write(draft)
     setDraft('')
   }
 
-  const toggleHeart = (id: string) => setHearted((current) => ({ ...current, [id]: !current[id] }))
-
   return (
-    <Screen
-      nav="conversazione"
-      go={go}
-      scrollable={Boolean(go)}
-      bodyStyle={{ padding: '18px 24px 0', gap: 11 }}
-    >
+    <Screen nav="conversazione" go={go} scrollable={Boolean(go)} bodyStyle={{ padding: '18px 24px 0', gap: 11 }}>
       <div style={{ flex: 'none' }}>
         <h1 style={{ margin: 0, font: `500 30px/1.1 ${font.serif}`, color: color.ink }}>La Conversazione</h1>
         <div style={{ margin: '5px 0 0', font: `italic 400 13.5px/1.4 ${font.serif}`, color: color.olive }}>
@@ -142,28 +120,42 @@ export function LaConversazione({ go }: ScreenProps) {
         </p>
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, flex: 'none' }}>
-        {posts.map((post) => {
-          const hearts = post.hearts + (hearted[post.id] ? 1 : 0)
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, flex: '1 1 auto' }}>
+        {entries.map((post) => {
+          const name = post.author?.display_name ?? 'A member'
+          const where = post.author?.where_from
+          const photo = samplePhotos[post.id]
+          const replies = sampleReplies[post.id]
+
           const body = (
             <>
               <div style={{ font: `600 12.5px ${font.serif}`, color: color.ink }}>
-                {post.name} <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}>&middot; {post.where}</span>
+                {name}
+                {where && <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}> &middot; {where}</span>}
               </div>
               <p
                 style={{
-                  margin: post.photo ? '5px 0 7px' : '6px 0 8px',
-                  font: `400 12.5px/${post.photo ? '1.5' : '1.55'} ${font.body}`,
+                  margin: photo ? '5px 0 7px' : '6px 0 8px',
+                  font: `400 12.5px/${photo ? '1.5' : '1.55'} ${font.body}`,
                   color: color.inkSoft,
                 }}
               >
-                {post.text}
+                {post.body}
               </p>
-              <div style={{ display: 'flex', gap: 14, font: `500 11px ${font.ui}`, color: color.terracotta }}>
-                <span className={go ? 'heart' : undefined} onClick={go && (() => toggleHeart(post.id))}>
-                  &hearts; {hearts}
-                </span>
-                <span style={{ color: color.muted }}>{post.replies} replies</span>
+              <div style={{ display: 'flex', gap: 14, alignItems: 'baseline' }}>
+                <button
+                  type="button"
+                  className={go ? 'btn-quiet heart' : 'btn-quiet'}
+                  aria-pressed={post.hearted}
+                  aria-label={`Warm ${name}'s post`}
+                  onClick={go && (() => toggleHeart(post.id))}
+                  style={{ font: `500 11px ${font.ui}`, color: color.terracotta }}
+                >
+                  &hearts; {post.hearts}
+                </button>
+                {replies !== undefined && (
+                  <span style={{ font: `500 11px ${font.ui}`, color: color.muted }}>{replies} replies</span>
+                )}
               </div>
             </>
           )
@@ -171,20 +163,20 @@ export function LaConversazione({ go }: ScreenProps) {
           return (
             <div
               key={post.id}
-              className={post.fresh ? 'note-anim' : undefined}
+              className={post.id.startsWith('local-') ? 'note-anim' : undefined}
               style={{
                 background: color.creamCard,
                 borderRadius: 15,
                 padding: '13px 16px',
                 boxShadow: '0 2px 8px rgba(38,38,38,.05)',
-                display: post.photo ? 'flex' : undefined,
-                gap: post.photo ? 12 : undefined,
+                display: photo ? 'flex' : undefined,
+                gap: photo ? 12 : undefined,
               }}
             >
-              {post.photo ? (
+              {photo ? (
                 <>
                   <PhotoFrame
-                    label={post.photo}
+                    label={photo}
                     width={70}
                     height={70}
                     radius="12px"

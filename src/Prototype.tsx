@@ -10,8 +10,9 @@ const hints: Partial<Record<ScreenId, string>> = {
   peek: 'Continue to the invitation.',
   join: 'Join to reach the login door.',
   login: 'Any email and password will let you in.',
-  welcome: 'Enter this month’s Porta, or wander with the bar below.',
-  porta: 'Step through to the three paths.',
+  entering: 'A breath, then the room.',
+  home: 'Il Salotto itself. This month is one tap deeper.',
+  porta: 'This month’s door. Step through to the three paths.',
   sentieri: 'Il Luogo is open. Il Libro and L’Anima are still being written.',
   path: 'Leave a note when something stirs.',
   pathBook: 'This path is waiting on its readings. The City is open.',
@@ -22,8 +23,8 @@ const hints: Partial<Record<ScreenId, string>> = {
   archive: 'The month now open takes you back to its Porta.',
 }
 
-/** The clickable version: one phone, real navigation, live notes and hearts. */
-export function Prototype() {
+/** The app itself: one phone, real navigation, live notes and hearts. */
+export function Prototype({ onShowMockups }: { onShowMockups?: () => void }) {
   const [screen, setScreen] = useState<ScreenId>('landing')
   const { caption, Component } = screens[screen]
 
@@ -34,13 +35,23 @@ export function Prototype() {
           <Component go={setScreen} />
         </div>
       </PhoneFrame>
-      <div className="cap">{caption}</div>
-      <p className="proto-hint">{hints[screen]}</p>
-      {screen !== 'landing' && (
-        <button type="button" className="proto-reset" onClick={() => setScreen('landing')}>
-          Back to the front door
-        </button>
-      )}
+      {/* Reviewer's scaffolding: useful on a desktop, in the way on a phone. */}
+      <div className="proto-chrome">
+        <div className="cap">{caption}</div>
+        <p className="proto-hint">{hints[screen]}</p>
+        <div style={{ display: 'flex', gap: 10 }}>
+          {screen !== 'landing' && (
+            <button type="button" className="proto-reset" onClick={() => setScreen('landing')}>
+              Back to the front door
+            </button>
+          )}
+          {onShowMockups && (
+            <button type="button" className="proto-reset" onClick={onShowMockups}>
+              See the mockup set
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   )
 }

@@ -1,4 +1,5 @@
 import { GoldCaps, Screen } from '../components/Screen'
+import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenId, ScreenProps } from '../navigation'
 
@@ -10,7 +11,7 @@ const archiveRows: { title: string; detail: string; target?: ScreenId }[] = [
 /** 7. The Gathering: the monthly call, and the depth built behind it. */
 export function Gathering({ go }: ScreenProps) {
   return (
-    <Screen nav="gathering" go={go} bodyStyle={{ padding: '20px 26px 0', gap: 14 }}>
+    <Screen nav="gathering" go={go} bodyStyle={{ padding: '20px 26px 0', gap: 13 }}>
       <div style={{ textAlign: 'center', flex: 'none' }}>
         <GoldCaps size={10} spacing={3}>
           L&rsquo;INCONTRO
@@ -55,13 +56,28 @@ export function Gathering({ go }: ScreenProps) {
         </div>
       </div>
 
+      <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', minHeight: 0 }}>
+        <PhotoFrame
+          label="drop: the room, or a table laid for friends"
+          photo="salotto-opening"
+          width="100%"
+          height="100%"
+          radius="60px 60px 10px 10px"
+          innerRadius="54px 54px 7px 7px"
+          border="1px solid rgba(200,107,74,.3)"
+          pad={6}
+          labelSize={9}
+          style={{ maxHeight: 132, minHeight: 74 }}
+        />
+      </div>
+
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>
         <div style={{ flex: 1, height: 1, background: 'rgba(38,38,38,.1)' }} />
         <div style={{ font: `italic 400 13px ${font.serif}`, color: color.muted }}>the depth so far</div>
         <div style={{ flex: 1, height: 1, background: 'rgba(38,38,38,.1)' }} />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, flex: 'none' }}>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: '0 1 auto' }}>
         {archiveRows.map((row) => (
           <div
             key={row.title}
@@ -88,11 +104,11 @@ export function Gathering({ go }: ScreenProps) {
 
       <div
         style={{
-          margin: 'auto 0 0',
-          paddingBottom: 10,
+          paddingBottom: 12,
           textAlign: 'center',
           font: `italic 400 12.5px ${font.serif}`,
           color: color.muted,
+          flex: 'none',
         }}
       >
         Come as deep as your life allows this month.

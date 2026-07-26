@@ -65,7 +65,17 @@ export function InsideAPath({ go }: ScreenProps) {
         A city at the edge of Italy, and never only Italian.
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 9, margin: '16px 0 0' }}>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 9,
+          margin: '16px 0 0',
+          flex: '1 1 auto',
+          justifyContent: 'space-evenly',
+          minHeight: 0,
+        }}
+      >
         {resources.map((resource) => (
           <div
             key={resource.title}
@@ -123,10 +133,11 @@ export function InsideAPath({ go }: ScreenProps) {
       <div
         style={{
           margin: 'auto 0 0',
-          padding: '14px 0 12px',
+          padding: '16px 0 14px',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'space-between',
+          gap: 12,
         }}
       >
         <div style={{ font: `italic 400 14.5px ${font.serif}`, color: color.deepGreen }}>

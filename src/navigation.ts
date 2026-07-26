@@ -6,7 +6,10 @@ export type ScreenId =
   | 'peek'
   | 'join'
   | 'login'
-  | 'welcome'
+  /** the moment just after signing in */
+  | 'entering'
+  /** the room itself, the true landing spot */
+  | 'home'
   | 'porta'
   | 'sentieri'
   | 'path'
@@ -19,10 +22,10 @@ export type ScreenId =
   | 'archive'
 
 /** The six items in the in-app bottom bar. */
-export type NavId = 'thisMonth' | 'paths' | 'notes' | 'conversazione' | 'gathering' | 'archive'
+export type NavId = 'home' | 'paths' | 'notes' | 'conversazione' | 'gathering' | 'archive'
 
 export const navTarget: Record<NavId, ScreenId> = {
-  thisMonth: 'welcome',
+  home: 'home',
   paths: 'sentieri',
   notes: 'notes',
   conversazione: 'conversazione',

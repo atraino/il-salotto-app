@@ -113,7 +113,7 @@ export function CameraIcon({ size = 15 }: IconProps) {
 }
 
 export const navIcons: Record<NavId, (props: IconProps) => JSX.Element> = {
-  thisMonth: DoorIcon,
+  home: DoorIcon,
   paths: PathIcon,
   notes: PenIcon,
   conversazione: ChairsIcon,

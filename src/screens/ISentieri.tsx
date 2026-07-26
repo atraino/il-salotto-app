@@ -8,6 +8,9 @@ type Path = {
   caps: string
   line: string
   photo: string
+  /** basename of the real photo in public/photos, when there is one */
+  file?: string
+  fit?: 'cover' | 'contain'
   tone: Tone
   /** how many of the three dots are filled, so far */
   explored: number
@@ -22,6 +25,8 @@ const paths: Path[] = [
     caps: 'THE BOOK',
     line: 'Why this novel matters, its humor and its modern soul.',
     photo: 'drop: the book on a desk',
+    file: 'book-cover',
+    fit: 'contain' as const,
     tone: 'cream',
     explored: 0,
     target: 'pathBook',
@@ -31,6 +36,7 @@ const paths: Path[] = [
     caps: 'THE CITY',
     line: 'Trieste, a place that was Austrian, Slovenian, Jewish, and Italian at once.',
     photo: 'drop: Trieste and the sea',
+    file: 'trieste',
     tone: 'green',
     explored: 1,
     target: 'path',
@@ -81,6 +87,8 @@ function PathCard({ path, onOpen }: { path: Path; onOpen?: () => void }) {
       <PhotoFrame
         tone={path.tone}
         label={path.photo}
+        photo={path.file}
+        fit={path.fit}
         width={78}
         height={100}
         radius="39px 39px 6px 6px"
@@ -133,7 +141,18 @@ export function ISentieri({ go }: ScreenProps) {
         the ones that pull you.
       </h1>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 12, margin: '18px 0 0' }}>
+      {/* the three cards share the slack evenly instead of leaving a hole below */}
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 12,
+          margin: '16px 0 0',
+          flex: '1 1 auto',
+          justifyContent: 'space-evenly',
+          minHeight: 0,
+        }}
+      >
         {paths.map((path) => (
           <PathCard key={path.caps} path={path} onOpen={go && (() => go(path.target))} />
         ))}
@@ -141,8 +160,7 @@ export function ISentieri({ go }: ScreenProps) {
 
       <div
         style={{
-          margin: 'auto 0 0',
-          padding: '12px 0 10px',
+          padding: '10px 0 10px',
           textAlign: 'center',
           font: `italic 400 12.5px ${font.serif}`,
           color: color.muted,

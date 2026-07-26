@@ -5,7 +5,8 @@ import { WhyIlSalotto } from './WhyIlSalotto'
 import { PeekInside } from './PeekInside'
 import { Join } from './Join'
 import { Login } from './Login'
-import { Welcome } from './Welcome'
+import { Entering } from './Entering'
+import { Home } from './Home'
 import { LaPorta } from './LaPorta'
 import { ISentieri } from './ISentieri'
 import { InsideAPath } from './InsideAPath'
@@ -28,22 +29,23 @@ export const screens: Record<ScreenId, ScreenEntry> = {
   peek: { caption: 'D · A peek inside', Component: PeekInside },
   join: { caption: 'E · Join', Component: Join },
   login: { caption: 'F · Login', Component: Login },
-  welcome: { caption: '1 · Welcome', Component: Welcome },
-  porta: { caption: '2 · La Porta', Component: LaPorta },
-  sentieri: { caption: '3 · I Sentieri', Component: ISentieri },
-  path: { caption: '4 · Inside a path: The City', Component: InsideAPath },
+  entering: { caption: '1 · You’re in', Component: Entering },
+  home: { caption: '2 · Il Salotto, the room', Component: Home },
+  porta: { caption: '3 · This month: La Porta', Component: LaPorta },
+  sentieri: { caption: '4 · I Sentieri', Component: ISentieri },
+  path: { caption: '5 · Inside a path: The City', Component: InsideAPath },
   pathBook: {
-    caption: '4a · Il Libro, coming',
+    caption: '5a · Il Libro, coming',
     Component: (props) => PathComing({ ...props, path: comingPaths.book }),
   },
   pathSoul: {
-    caption: '4b · L’Anima, coming',
+    caption: '5b · L’Anima, coming',
     Component: (props) => PathComing({ ...props, path: comingPaths.soul }),
   },
-  notes: { caption: '5 · Your notes', Component: YourNotes },
-  conversazione: { caption: '6 · La Conversazione', Component: LaConversazione },
-  gathering: { caption: '7 · The Gathering', Component: Gathering },
-  archive: { caption: '8 · The Archive', Component: Archive },
+  notes: { caption: '6 · Your notes', Component: YourNotes },
+  conversazione: { caption: '7 · La Conversazione', Component: LaConversazione },
+  gathering: { caption: '8 · The Gathering', Component: Gathering },
+  archive: { caption: '9 · The Archive', Component: Archive },
 }
 
 /** The screens grouped by flow, the way the design lays them out. */
@@ -53,7 +55,7 @@ export const groups: { num: string; name: string; ids: ScreenId[] }[] = [
     name: 'The front door: landing, joining, logging in',
     ids: ['landing', 'howItWorks', 'why', 'peek', 'join', 'login'],
   },
-  { num: 'I', name: 'Arrive', ids: ['welcome'] },
+  { num: 'I', name: 'Arrive: the room itself', ids: ['entering', 'home'] },
   {
     num: 'II',
     name: 'The month: one door, three paths',

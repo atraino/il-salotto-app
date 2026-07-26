@@ -63,3 +63,20 @@ IMPLEMENTATION.md   how the build maps to the design, and what to change next
 
 Photos are still empty labeled drop zones. `IMPLEMENTATION.md` explains the one-component swap that
 turns them into real images, and how to open the two paths that are still in preparazione.
+
+## The database
+
+Notes, posts, and hearts live in Supabase, with email magic-link sign-in. Without keys the app runs
+as a prototype: the sample room, nothing saved. See `docs/SUPABASE-SETUP.md` for the twenty-minute
+setup, and `supabase/schema.sql` for the tables and their security policies.
+
+```bash
+cp .env.example .env.local   # then paste your Supabase URL and anon key
+```
+
+## Installing to a phone
+
+The app is a PWA: `public/manifest.webmanifest`, `public/sw.js`, and the door icons. On iPhone, open
+it in Safari, tap Share, then **Add to Home Screen**; on Android, Chrome offers to install it. It
+opens full-screen with no browser bars, and the service worker always checks the network for the
+page itself, so a deploy is live immediately rather than stuck behind a cached copy.

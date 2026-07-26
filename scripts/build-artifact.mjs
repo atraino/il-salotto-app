@@ -14,7 +14,11 @@ const head = source.match(/<head>([\s\S]*?)<\/head>/)?.[1] ?? ''
 const body = source.match(/<body>([\s\S]*?)<\/body>/)?.[1] ?? ''
 
 // Keep the styles and scripts; drop charset and viewport, which the host sets.
-const styles = head.replace(/<meta[^>]*>/g, '').replace(/<title>[\s\S]*?<\/title>/g, '').trim()
+const styles = head
+  .replace(/<meta[^>]*>/g, '')
+  .replace(/<link[^>]*>/g, '')
+  .replace(/<title>[\s\S]*?<\/title>/g, '')
+  .trim()
 
 const page = `<title>Il Salotto</title>\n${styles}\n${body.trim()}\n`
 

@@ -3,20 +3,10 @@ import { GoldCaps, Screen } from '../components/Screen'
 import { PhotoFrame } from '../components/PhotoFrame'
 import { CameraIcon } from '../components/icons'
 import { color, font } from '../theme'
+import { useRoom, type Sample } from '../lib/room'
 import type { ScreenProps } from '../navigation'
 
-type Note = {
-  id: string
-  name: string
-  where: string
-  text: string
-  hearts: number
-  photo?: string
-  /** notes written in this session, so they can arrive gently */
-  fresh?: boolean
-}
-
-const roomSoFar: Note[] = [
+const roomSoFar: Sample[] = [
   {
     id: 'giulia',
     name: 'Giulia',
@@ -41,41 +31,21 @@ const roomSoFar: Note[] = [
   },
 ]
 
-function NoteName({ name, where }: { name: string; where: string }) {
-  return (
-    <span style={{ font: `600 13px ${font.serif}`, color: color.ink }}>
-      {name} <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}>&middot; {where}</span>
-    </span>
-  )
-}
+/** Photos belong to the sample room; notes written for real are text for now. */
+const samplePhotos = Object.fromEntries(roomSoFar.filter((s) => s.photo).map((s) => [s.id, s.photo!]))
 
 /** 5. Your notes: the quiet, journal-toned heart of a path. */
 export function YourNotes({ go }: ScreenProps) {
-  const [notes, setNotes] = useState(roomSoFar)
+  const { entries, write, toggleHeart } = useRoom('notes', roomSoFar, 'city')
   const [draft, setDraft] = useState('')
-  const [hearted, setHearted] = useState<Record<string, boolean>>({})
 
-  const leaveNote = () => {
-    const text = draft.trim()
-    if (!text) return
-    setNotes((current) => [
-      { id: `you-${current.length}`, name: 'You', where: 'just now', text, hearts: 0, fresh: true },
-      ...current,
-    ])
+  const leaveNote = async () => {
+    await write(draft)
     setDraft('')
   }
 
-  const toggleHeart = (id: string) => setHearted((current) => ({ ...current, [id]: !current[id] }))
-
-  const heartCount = (note: Note) => note.hearts + (hearted[note.id] ? 1 : 0)
-
   return (
-    <Screen
-      nav="notes"
-      go={go}
-      scrollable={Boolean(go)}
-      bodyStyle={{ padding: '20px 24px 0', gap: 13 }}
-    >
+    <Screen nav="notes" go={go} scrollable={Boolean(go)} bodyStyle={{ padding: '20px 24px 0', gap: 13 }}>
       <div style={{ textAlign: 'center' }}>
         <GoldCaps size={10} spacing={3}>
           ON THE PATH &middot; THE CITY
@@ -117,13 +87,14 @@ export function YourNotes({ go }: ScreenProps) {
             paddingTop: 12,
           }}
         >
-          <div
-            className={go ? 'tappable' : undefined}
+          <button
+            type="button"
+            className={go ? 'btn-quiet tappable' : 'btn-quiet'}
             style={{ display: 'flex', alignItems: 'center', gap: 6, color: color.gold, font: `500 12px ${font.ui}` }}
           >
             <CameraIcon />
             add a photo
-          </div>
+          </button>
           <button
             type="button"
             className="btn-primary"
@@ -141,44 +112,52 @@ export function YourNotes({ go }: ScreenProps) {
         <div style={{ flex: 1, height: 1, background: 'rgba(38,38,38,.1)' }} />
       </div>
 
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: 'none' }}>
-        {notes.map((note) =>
-          note.photo ? (
-            <div
-              key={note.id}
-              style={{
-                background: color.creamCard,
-                borderRadius: 16,
-                padding: '15px 18px',
-                boxShadow: '0 2px 8px rgba(38,38,38,.05)',
-                display: 'flex',
-                gap: 12,
-              }}
-            >
-              <PhotoFrame
-                label={note.photo}
-                width={56}
-                height={56}
-                radius="28px 28px 4px 4px"
-                stripe={6}
-                labelSize={7.5}
-                labelPad={0}
-                style={{ flex: 'none' }}
-              />
-              <div>
-                <div style={{ font: `600 13px ${font.serif}`, color: color.ink }}>
-                  {note.name}{' '}
-                  <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}>&middot; {note.where}</span>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: '1 1 auto' }}>
+        {entries.map((note) => {
+          const photo = samplePhotos[note.id]
+          const name = note.author?.display_name ?? 'A member'
+          const where = note.author?.where_from
+
+          if (photo) {
+            return (
+              <div
+                key={note.id}
+                style={{
+                  background: color.creamCard,
+                  borderRadius: 16,
+                  padding: '15px 18px',
+                  boxShadow: '0 2px 8px rgba(38,38,38,.05)',
+                  display: 'flex',
+                  gap: 12,
+                }}
+              >
+                <PhotoFrame
+                  label={photo}
+                  width={56}
+                  height={56}
+                  radius="28px 28px 4px 4px"
+                  stripe={6}
+                  labelSize={7.5}
+                  labelPad={0}
+                  style={{ flex: 'none' }}
+                />
+                <div>
+                  <div style={{ font: `600 13px ${font.serif}`, color: color.ink }}>
+                    {name}
+                    {where && <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}> &middot; {where}</span>}
+                  </div>
+                  <p style={{ margin: '6px 0 0', font: `400 12.5px/1.55 ${font.body}`, color: color.inkSoft }}>
+                    {note.body}
+                  </p>
                 </div>
-                <p style={{ margin: '6px 0 0', font: `400 12.5px/1.55 ${font.body}`, color: color.inkSoft }}>
-                  {note.text}
-                </p>
               </div>
-            </div>
-          ) : (
+            )
+          }
+
+          return (
             <div
               key={note.id}
-              className={note.fresh ? 'note-anim' : undefined}
+              className={note.id.startsWith('local-') ? 'note-anim' : undefined}
               style={{
                 background: color.creamCard,
                 borderRadius: 16,
@@ -187,23 +166,29 @@ export function YourNotes({ go }: ScreenProps) {
               }}
             >
               <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-                <NoteName name={note.name} where={note.where} />
-                <span
-                  className={go ? 'heart' : undefined}
+                <span style={{ font: `600 13px ${font.serif}`, color: color.ink }}>
+                  {name}
+                  {where && <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}> &middot; {where}</span>}
+                </span>
+                <button
+                  type="button"
+                  className={go ? 'btn-quiet heart' : 'btn-quiet'}
+                  aria-pressed={note.hearted}
+                  aria-label={`Warm ${name}'s note`}
                   onClick={go && (() => toggleHeart(note.id))}
                   style={{
                     font: `500 11px ${font.ui}`,
                     color: color.terracotta,
-                    opacity: heartCount(note) === 0 ? 0.55 : 1,
+                    opacity: note.hearts === 0 ? 0.55 : 1,
                   }}
                 >
-                  &hearts; {heartCount(note)}
-                </span>
+                  &hearts; {note.hearts}
+                </button>
               </div>
-              <p style={{ margin: '7px 0 0', font: `400 13px/1.6 ${font.body}`, color: color.inkSoft }}>{note.text}</p>
+              <p style={{ margin: '7px 0 0', font: `400 13px/1.6 ${font.body}`, color: color.inkSoft }}>{note.body}</p>
             </div>
-          ),
-        )}
+          )
+        })}
       </div>
 
       <div

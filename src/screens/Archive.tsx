@@ -7,12 +7,14 @@ type Door = {
   month: string
   title: string
   photo: string
+  /** basename of the real photo in public/photos, when there is one */
+  file?: string
   /** the month now open, shown in deep green */
   current?: boolean
 }
 
 const doors: Door[] = [
-  { month: 'JULY · NOW OPEN', title: 'Svevo’s Trieste', photo: 'drop: Trieste', current: true },
+  { month: 'JULY · NOW OPEN', title: 'Svevo’s Trieste', photo: 'drop: Trieste', file: 'trieste', current: true },
   { month: 'JUNE', title: 'The Leopard’s Sicily', photo: 'drop: Sicily' },
   { month: 'MAY', title: 'Ferrante’s Naples', photo: 'drop: Naples' },
   { month: 'APRIL', title: 'Fellini’s Rimini', photo: 'drop: Rimini' },
@@ -38,7 +40,17 @@ export function Archive({ go }: ScreenProps) {
         walked through
       </h1>
 
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, margin: '18px 0 0' }}>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 1fr',
+          gap: 12,
+          margin: '16px 0 0',
+          flex: '1 1 auto',
+          alignContent: 'space-evenly',
+          minHeight: 0,
+        }}
+      >
         {doors.map((door) => (
           <div
             key={door.month}
@@ -55,6 +67,7 @@ export function Archive({ go }: ScreenProps) {
             <PhotoFrame
               tone={door.current ? 'green' : 'cream'}
               label={door.photo}
+              photo={door.file}
               width="100%"
               height={110}
               radius="55px 55px 4px 4px"
@@ -90,8 +103,8 @@ export function Archive({ go }: ScreenProps) {
 
       <div
         style={{
-          margin: 'auto 0 0',
-          padding: '14px 0 10px',
+          padding: '12px 0 10px',
+          flex: 'none',
           textAlign: 'center',
           font: `italic 400 12.5px ${font.serif}`,
           color: color.muted,

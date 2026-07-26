@@ -58,6 +58,7 @@ export function Cover() {
       <PhotoFrame
         tone="green"
         label="drop: a warm doorway in Italy, light spilling out"
+        photo="doorway"
         width={300}
         height={440}
         radius="150px 150px 0 0"

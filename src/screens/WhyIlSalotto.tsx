@@ -16,6 +16,7 @@ export function WhyIlSalotto({ go }: ScreenProps) {
 
       <PhotoFrame
         label="drop: you in Italy, or Florence"
+        photo="alexis"
         width={168}
         height={212}
         radius="84px 84px 6px 6px"

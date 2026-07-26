@@ -24,23 +24,26 @@ export function Landing({ go }: ScreenProps) {
         together.
       </div>
 
-      <PhotoFrame
-        tone="green"
-        label="drop: a cozy room, books, soft light"
-        width={272}
-        height={296}
-        radius="136px 136px 10px 10px"
-        innerRadius="128px 128px 6px 6px"
-        border="1px solid rgba(201,162,74,.55)"
-        labelSize={10}
-        labelPad={40}
-        style={{ margin: '24px 0 0' }}
-      />
+      {/* the photo takes whatever height is left, so nothing floats */}
+      <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '20px 0 4px', minHeight: 0 }}>
+        <PhotoFrame
+          tone="green"
+          label="drop: a cozy room, books, soft light"
+          photo="salotto-opening"
+          width="auto"
+          height="100%"
+          radius="136px 136px 10px 10px"
+          innerRadius="128px 128px 6px 6px"
+          border="1px solid rgba(201,162,74,.55)"
+          labelSize={10}
+          labelPad={40}
+          style={{ aspectRatio: '272 / 296', maxHeight: 300, minHeight: 168 }}
+        />
+      </div>
 
       <div
         style={{
-          margin: 'auto 0 0',
-          paddingTop: 22,
+          paddingTop: 4,
           display: 'flex',
           flexDirection: 'column',
           alignItems: 'center',
