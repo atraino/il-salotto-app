@@ -540,9 +540,16 @@ button {
     height: 100%;
   }
 
-  /* the phone draws its own status bar above us; keep the space, drop the mockup one */
+  /*
+   * The mockup's drawn status bar goes entirely on a real phone, and its space
+   * with it. It used to be left in place, reserving about 44px for the phone's
+   * own bar to sit over — which was right under black-translucent, and is
+   * double-counting now that iOS keeps the status bar to itself. Removing it
+   * also gives every screen 44px back, which is most of what was making the
+   * longer ones scroll in Safari.
+   */
   .proto-stage .status-bar {
-    visibility: hidden;
+    display: none;
   }
 
   /* every screen scrolls on a short phone, the nav stays put */

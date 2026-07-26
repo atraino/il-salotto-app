@@ -10,7 +10,17 @@
   <link rel="icon" href="/icon-192.png">
   <link rel="apple-touch-icon" href="/icon-180.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <!--
+    "default", not "black-translucent".
+
+    black-translucent asks iOS to draw the app underneath the status bar, and
+    in an installed app it shifts the whole page up by the height of that bar:
+    the content hides under the clock and an identical gap opens along the
+    bottom. That gap was the tan band, and it is why it survived three separate
+    attempts to fix the height — nothing was wrong with the height. With
+    "default" iOS keeps the status bar to itself and hands the app the rest.
+  -->
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
   <meta name="apple-mobile-web-app-title" content="Il Salotto">
 </head>
 <body>
