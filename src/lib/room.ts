@@ -142,6 +142,28 @@ export function useRoom(table: Table, samples: Sample[], path?: string) {
     [table, path, session, load],
   )
 
+  /**
+   * Take back something you wrote. Row level security already allows a member
+   * to delete their own rows and nobody else's, so the check below is about
+   * not offering a button that would fail, not about safety.
+   */
+  const remove = useCallback(
+    async (id: string) => {
+      if (!supabase || !session) {
+        setEntries((current) => current.filter((entry) => entry.id !== id))
+        return
+      }
+      const { error } = await supabase.from(table).delete().eq('id', id)
+      if (error) {
+        setFailed(error.message)
+        return
+      }
+      setFailed(null)
+      setEntries((current) => current.filter((entry) => entry.id !== id))
+    },
+    [table, session],
+  )
+
   const toggleHeart = useCallback(
     async (id: string) => {
       // optimistic either way: the room should feel immediate
@@ -167,5 +189,5 @@ export function useRoom(table: Table, samples: Sample[], path?: string) {
     [entries, kind, session],
   )
 
-  return { entries, loading, failed, write, toggleHeart }
+  return { entries, loading, failed, me, write, remove, toggleHeart }
 }

@@ -13,9 +13,9 @@ const sentieri = [
 /** B. How it works: one doorway, three paths, told with type rather than diagram lines. */
 export function HowItWorks({ go }: ScreenProps) {
   return (
-    <Screen bodyStyle={{ padding: '14px 28px 14px', alignItems: 'center', textAlign: 'center' }}>
+    <Screen bodyStyle={{ padding: '8px 26px 10px', alignItems: 'center', textAlign: 'center' }}>
       <BackLink go={go} to="landing" label="Il Salotto" />
-      <h1 style={{ margin: 0, font: `500 27px/1.15 ${font.serif}`, color: color.ink }}>How it works</h1>
+      <h1 style={{ margin: 0, font: `500 25px/1.15 ${font.serif}`, color: color.ink }}>How it works</h1>
       <div style={{ margin: '7px 0 0', width: 36, height: 1, background: color.gold }} />
       <div
         style={{
@@ -33,15 +33,15 @@ export function HowItWorks({ go }: ScreenProps) {
       <PhotoFrame
         label="drop: a real Italian doorway, warm light"
         photo="doorway"
-        width={122}
-        height={152}
-        radius="61px 61px 5px 5px"
-        innerRadius="55px 55px 3px 3px"
+        width={104}
+        height={130}
+        radius="52px 52px 5px 5px"
+        innerRadius="47px 47px 3px 3px"
         border="1px solid rgba(200,107,74,.4)"
         pad={6}
-        style={{ margin: '10px 0 0', flex: 'none' }}
+        style={{ margin: '8px 0 0', flex: 'none' }}
       />
-      <div style={{ margin: '9px 0 0', font: `500 16.5px/1.25 ${font.serif}`, color: color.ink }}>
+      <div style={{ margin: '9px 0 0', font: `500 15.5px/1.25 ${font.serif}`, color: color.ink }}>
         This month&rsquo;s doorway: a book
       </div>
       <div style={{ margin: '4px 0 0', font: `italic 500 12.5px/1.45 ${font.serif}`, color: color.olive }}>
@@ -74,12 +74,12 @@ export function HowItWorks({ go }: ScreenProps) {
       {/* one warm line, in Alexis's words, about what the month arrives holding */}
       <div
         style={{
-          margin: '12px 0 0',
+          margin: '10px 0 0',
           width: '100%',
           borderTop: '1px solid rgba(201,162,74,.4)',
           borderBottom: '1px solid rgba(201,162,74,.4)',
-          padding: '11px 6px',
-          font: `italic 400 13px/1.55 ${font.serif}`,
+          padding: '9px 6px',
+          font: `italic 400 12.5px/1.5 ${font.serif}`,
           color: color.goldDeep,
           flex: 'none',
         }}

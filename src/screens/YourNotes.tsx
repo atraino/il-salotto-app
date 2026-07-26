@@ -36,7 +36,7 @@ const samplePhotos = Object.fromEntries(roomSoFar.filter((s) => s.photo).map((s)
 
 /** 5. Your notes: the quiet, journal-toned heart of a path. */
 export function YourNotes({ go }: ScreenProps) {
-  const { entries, loading, failed, write, toggleHeart } = useRoom('notes', roomSoFar, 'city')
+  const { entries, loading, failed, me, write, remove, toggleHeart } = useRoom('notes', roomSoFar, 'city')
   const [draft, setDraft] = useState('')
 
   const leaveNote = async () => {
@@ -184,11 +184,21 @@ export function YourNotes({ go }: ScreenProps) {
                 boxShadow: '0 2px 8px rgba(38,38,38,.05)',
               }}
             >
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline', gap: 10 }}>
                 <span style={{ font: `600 13px ${font.serif}`, color: color.ink }}>
                   {name}
                   {where && <span style={{ font: `400 10px ${font.ui}`, color: color.mutedWarm }}> &middot; {where}</span>}
                 </span>
+                {go && me && note.author?.id === me && (
+                  <button
+                    type="button"
+                    className="btn-quiet tappable"
+                    onClick={() => remove(note.id)}
+                    style={{ font: `500 11px ${font.ui}`, color: color.mutedWarm, marginLeft: 'auto' }}
+                  >
+                    Delete
+                  </button>
+                )}
                 <button
                   type="button"
                   className={go ? 'btn-quiet heart' : 'btn-quiet'}

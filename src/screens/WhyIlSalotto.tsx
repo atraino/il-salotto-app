@@ -5,25 +5,26 @@ import type { ScreenProps } from '../navigation'
 
 /*
  * The words on this screen are Alexis's, finalised, and are not to be
- * rewritten or tightened. Sizes here are chosen so the whole letter sits on
- * one screen; if something has to give, move the type, not the words.
+ * rewritten or tightened. Sizes are chosen to fit the shortest viewport this
+ * has to survive — Safari with its address bar showing, about 720pt — because
+ * that is where her signature was being cut off. If something has to give,
+ * move the type, not the words.
  */
 const paragraph = {
-  margin: '10px auto 0',
-  font: `400 11px/1.62 ${font.body}`,
+  margin: '9px auto 0',
+  font: `400 10.5px/1.58 ${font.body}`,
   color: color.ink,
-  /* centred under the centred photograph, on a measure narrow enough that the
-     ragged edges stay even instead of wandering */
   textAlign: 'center',
-  maxWidth: 302,
+  maxWidth: 300,
   textWrap: 'balance',
 } as const
 
 /** C. Why Il Salotto: a letter from the host, not a sales pitch. */
 export function WhyIlSalotto({ go }: ScreenProps) {
   return (
-    <Screen bodyStyle={{ padding: '10px 28px 14px', alignItems: 'center', textAlign: 'center' }}>
+    <Screen scrollable bodyStyle={{ padding: '8px 26px 12px', alignItems: 'center', textAlign: 'center' }}>
       <BackLink go={go} to="howItWorks" label="How it works" />
+
       <div
         style={{
           flex: '1 1 auto',
@@ -35,25 +36,36 @@ export function WhyIlSalotto({ go }: ScreenProps) {
           width: '100%',
         }}
       >
-        <div style={{ font: `400 36px/1.05 ${font.script}`, color: color.terracotta }}>
+        {/*
+          Italianno is drawn with one hairline weight, so it cannot simply be
+          made bold. A little stroke on the letterforms thickens it, and a
+          deeper terracotta gives it the contrast it was missing on cream.
+        */}
+        <div
+          style={{
+            font: `400 40px/1.05 ${font.script}`,
+            color: '#A85536',
+            WebkitTextStroke: '0.4px #A85536',
+            marginTop: 2,
+          }}
+        >
           Benvenuti nel salotto.
         </div>
 
-        {/* the photograph carries this screen: give it the room to */}
         <PhotoFrame
           label="drop: you in Italy, or Florence"
           photo="alexis"
-          width={196}
-          height={244}
-          radius="98px 98px 7px 7px"
-          innerRadius="91px 91px 5px 5px"
+          width={168}
+          height={210}
+          radius="84px 84px 6px 6px"
+          innerRadius="78px 78px 4px 4px"
           border="1px solid rgba(200,107,74,.42)"
-          pad={7}
-          labelPad={20}
-          style={{ margin: '10px 0 0', flex: 'none' }}
+          pad={6}
+          labelPad={18}
+          style={{ margin: '8px 0 0', flex: 'none' }}
         />
 
-        <div style={{ margin: '11px 0 0', font: `italic 400 15.5px/1.4 ${font.serif}`, color: color.goldDeep }}>
+        <div style={{ margin: '9px 0 0', font: `italic 400 14.5px/1.35 ${font.serif}`, color: color.goldDeep }}>
           Sono felice che tu sia qui.
         </div>
 
@@ -70,19 +82,21 @@ export function WhyIlSalotto({ go }: ScreenProps) {
           this so we could explore it alongside each other.
         </p>
 
-        <div style={{ margin: '11px 0 0', font: `italic 400 14px/1.4 ${font.serif}`, color: color.olive }}>
+        <div style={{ margin: '9px 0 0', font: `italic 400 13.5px/1.35 ${font.serif}`, color: color.olive }}>
           There&rsquo;s a seat for you.
         </div>
 
-        {/* signed, the way a letter is */}
-        <div style={{ margin: '2px 0 0', font: `400 42px/1.1 ${font.script}`, color: color.terracotta }}>Alexis</div>
+        {/* signed, the way a letter is — and never clipped by the button below */}
+        <div style={{ margin: '0', font: `400 38px/1.15 ${font.script}`, color: color.terracotta, flex: 'none' }}>
+          Alexis
+        </div>
       </div>
 
-      <div style={{ flex: 'none', paddingTop: 10 }}>
+      <div style={{ flex: 'none', paddingTop: 8 }}>
         <button
           type="button"
           className="btn-primary"
-          style={{ padding: '13px 40px', font: `600 13.5px ${font.ui}` }}
+          style={{ padding: '12px 38px', font: `600 13px ${font.ui}` }}
           onClick={go && (() => go('peek'))}
         >
           Continue

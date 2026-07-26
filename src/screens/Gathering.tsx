@@ -1,5 +1,4 @@
 import { GoldCaps, Screen } from '../components/Screen'
-import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenId, ScreenProps } from '../navigation'
 
@@ -12,7 +11,19 @@ const archiveRows: { title: string; detail: string; target?: ScreenId }[] = [
 /** 7. The Gathering: the monthly call, and the depth built behind it. */
 export function Gathering({ go }: ScreenProps) {
   return (
-    <Screen nav="gathering" go={go} bodyStyle={{ padding: '20px 26px 0', gap: 13 }}>
+    <Screen
+      nav="gathering"
+      go={go}
+      scrollable={Boolean(go)}
+      bodyStyle={{
+        padding: '20px 26px 0',
+        gap: 13,
+        /* the hills behind the whole gathering, in place of the framed photo
+           that used to sit in the middle of it */
+        background:
+          'linear-gradient(rgba(244,236,220,.9), rgba(244,236,220,.94)), url(/photos/tuscan-hills.jpg) center/cover no-repeat',
+      }}
+    >
       <div style={{ textAlign: 'center', flex: 'none' }}>
         <GoldCaps size={10} spacing={3}>
           L&rsquo;INCONTRO
@@ -75,21 +86,6 @@ export function Gathering({ go }: ScreenProps) {
         <div style={{ margin: '6px 0 0', font: `400 11.5px/1.6 ${font.body}`, color: color.creamGreenBody }}>
           Our live conversations are never recorded. What is said in the room stays in the room.
         </div>
-      </div>
-
-      <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', minHeight: 0 }}>
-        <PhotoFrame
-          label="drop: the room, or a table laid for friends"
-          photo="salotto-opening"
-          width="100%"
-          height="100%"
-          radius="60px 60px 10px 10px"
-          innerRadius="54px 54px 7px 7px"
-          border="1px solid rgba(200,107,74,.3)"
-          pad={6}
-          labelSize={9}
-          style={{ maxHeight: 132, minHeight: 74 }}
-        />
       </div>
 
       <div style={{ display: 'flex', alignItems: 'center', gap: 10, flex: 'none' }}>

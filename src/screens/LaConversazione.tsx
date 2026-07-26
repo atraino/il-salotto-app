@@ -38,7 +38,7 @@ const prompt = 'What’s Italy stirring in you this week? A thought, a photo, a 
 
 /** 6. La Conversazione: the open room, warmer and busier than the notes page. */
 export function LaConversazione({ go }: ScreenProps) {
-  const { entries, loading, failed, write, toggleHeart } = useRoom('posts', table)
+  const { entries, loading, failed, me, write, remove, toggleHeart } = useRoom('posts', table)
   const [draft, setDraft] = useState('')
 
   const share = async () => {
@@ -174,6 +174,17 @@ export function LaConversazione({ go }: ScreenProps) {
                 </button>
                 {replies !== undefined && (
                   <span style={{ font: `500 11px ${font.ui}`, color: color.muted }}>{replies} replies</span>
+                )}
+                {/* yours to take back; shown only on your own */}
+                {go && me && post.author?.id === me && (
+                  <button
+                    type="button"
+                    className="btn-quiet tappable"
+                    onClick={() => remove(post.id)}
+                    style={{ font: `500 11px ${font.ui}`, color: color.mutedWarm, marginLeft: 'auto' }}
+                  >
+                    Delete
+                  </button>
                 )}
               </div>
             </>
