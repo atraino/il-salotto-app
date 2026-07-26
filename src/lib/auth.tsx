@@ -44,7 +44,18 @@ export function AuthProvider({ children }: { children: ReactNode }) {
         if (!supabase) return null
         const { error } = await supabase.auth.signInWithOtp({
           email,
-          options: { emailRedirectTo: `${window.location.origin}/#/prototype` },
+          options: {
+            /*
+             * No '#' in here, ever. Supabase appends the session as a fragment
+             * (#access_token=...), so a redirect that already ends in a fragment
+             * produces two of them and the tokens are never read. The app opens
+             * on the room by default, so the bare origin is the right landing
+             * spot anyway.
+             */
+            emailRedirectTo: `${window.location.origin}/`,
+            // One link both joins and returns: unknown addresses get an account.
+            shouldCreateUser: true,
+          },
         })
         return error ? error.message : null
       },

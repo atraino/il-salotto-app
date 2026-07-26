@@ -1,6 +1,7 @@
-import { useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { PhoneFrame } from './components/Screen'
 import { screens } from './screens'
+import { useAuth } from './lib/auth'
 import type { ScreenId } from './navigation'
 
 const hints: Partial<Record<ScreenId, string>> = {
@@ -26,7 +27,25 @@ const hints: Partial<Record<ScreenId, string>> = {
 /** The app itself: one phone, real navigation, live notes and hearts. */
 export function Prototype({ onShowMockups }: { onShowMockups?: () => void }) {
   const [screen, setScreen] = useState<ScreenId>('landing')
+  const { session, ready } = useAuth()
   const { caption, Component } = screens[screen]
+
+  /*
+   * Arriving with a session means the sign-in link worked: someone tapped it in
+   * their email and the browser landed here holding tokens. Show them the room
+   * rather than the front door they already walked through. `welcomed` keeps
+   * this to once per sign-in, so a member who deliberately taps back to the
+   * landing screen is left where they put themselves.
+   */
+  const welcomed = useRef(false)
+  useEffect(() => {
+    if (!ready) return
+    if (session && !welcomed.current) {
+      welcomed.current = true
+      setScreen('entering')
+    }
+    if (!session) welcomed.current = false
+  }, [session, ready])
 
   return (
     <div className="proto-stage live">

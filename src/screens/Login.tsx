@@ -86,8 +86,8 @@ export function Login({ go }: ScreenProps) {
       />
       </div>
       <div style={{ font: `400 60px/1 ${font.script}`, color: color.gold, margin: '20px 0 0' }}>bentornata</div>
-      <div style={{ margin: '6px 0 0', font: `italic 400 14.5px/1.5 ${font.serif}`, color: color.cream }}>
-        The room is just as you left it.
+      <div style={{ margin: '6px 0 0', font: `italic 400 15px/1.5 ${font.serif}`, color: color.cream }}>
+        Let yourself into Il Salotto.
       </div>
 
       <div
@@ -144,12 +144,14 @@ export function Login({ go }: ScreenProps) {
         )}
         {live && !sent && (
           <div style={{ font: `italic 400 12.5px/1.5 ${font.serif}`, color: color.mutedGreen, textAlign: 'center' }}>
-            No password to remember. We send a link that opens the door.
+            New here or coming back, it is the same door. Leave your email and we
+            send a link that opens it. No password to remember.
           </div>
         )}
         {sent && (
           <div style={{ font: `italic 400 13.5px/1.55 ${font.serif}`, color: color.gold, textAlign: 'center' }}>
-            Check your email. The link opens Il Salotto, and stays open on this phone.
+            Sent. Open the email and tap the link, and it lets you straight in.
+            It can take a minute, and it may be in your spam folder.
           </div>
         )}
         {problem && (
@@ -167,14 +169,14 @@ export function Login({ go }: ScreenProps) {
         {!live || session ? 'Log in' : sending ? 'Sending...' : sent ? 'Send it again' : 'Send my link'}
       </button>
       <div style={{ margin: '18px 0 0', font: `500 12px ${font.ui}`, color: color.mutedGreen }}>
-        New here?{' '}
+        Not a member yet?{' '}
         <button
           type="button"
           className="btn-quiet tappable"
           onClick={go && (() => go('join'))}
           style={{ color: color.gold, textDecoration: 'underline', font: `500 12px ${font.ui}` }}
         >
-          Create your account
+          See what is inside
         </button>
       </div>
 
@@ -188,12 +190,9 @@ export function Login({ go }: ScreenProps) {
         }}
       >
         <div style={{ font: `italic 400 13.5px/1.6 ${font.serif}`, color: color.placeholderGreen }}>
-          Everything is where you left it:
+          The link opens the room and keeps it open,
           <br />
-          your notes, your paths, the room.
-        </div>
-        <div style={{ margin: '10px 0 0', font: `italic 400 12.5px ${font.serif}`, color: color.mutedGreen }}>
-          It opens straight into the room.
+          so you only ever do this once on a device.
         </div>
       </div>
       <span aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
