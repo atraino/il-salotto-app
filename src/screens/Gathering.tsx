@@ -4,7 +4,8 @@ import { color, font } from '../theme'
 import type { ScreenId, ScreenProps } from '../navigation'
 
 const archiveRows: { title: string; detail: string; target?: ScreenId }[] = [
-  { title: 'Past gatherings', detail: 'Six conversations, recorded and kept' },
+  // Never "recorded and kept": the calls are not recorded at all. See below.
+  { title: 'Past gatherings', detail: 'Six conversations, each one only in the room' },
   { title: 'Past doors', detail: 'Every month stays open behind you', target: 'archive' },
 ]
 
@@ -53,6 +54,26 @@ export function Gathering({ go }: ScreenProps) {
           Everyone brings their own read.
           <br />
           Italians welcome too.
+        </div>
+
+        {/*
+          A standing promise, not a footnote: people speak differently when
+          they know it is being kept. Stated wherever the call is offered.
+        */}
+        <div
+          style={{
+            margin: '14px 0 0',
+            paddingTop: 12,
+            borderTop: '1px solid rgba(201,162,74,.28)',
+            font: `600 9.5px ${font.ui}`,
+            letterSpacing: 2,
+            color: color.gold,
+          }}
+        >
+          NEVER RECORDED
+        </div>
+        <div style={{ margin: '6px 0 0', font: `400 11.5px/1.6 ${font.body}`, color: color.creamGreenBody }}>
+          Our live conversations are never recorded. What is said in the room stays in the room.
         </div>
       </div>
 

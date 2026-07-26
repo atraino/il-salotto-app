@@ -7,7 +7,7 @@ const included = [
   'One new door into Italy, every month',
   'Three paths to wander at your own depth',
   'The room of notes and La Conversazione',
-  'A live gathering around the table, monthly',
+  'A live gathering around the table, monthly, never recorded',
   'Every past door, open behind you',
 ]
 
@@ -24,22 +24,24 @@ export function Join({ go }: ScreenProps) {
         style={{
           margin: '20px 0 0',
           width: '100%',
-          background: color.creamCard,
+          /* deep green, so the one thing being asked of you does not blend
+             into the page it is sitting on */
+          background: color.deepGreen,
           border: '1px solid rgba(201,162,74,.45)',
           borderRadius: 20,
           padding: '24px 24px 22px',
-          boxShadow: '0 4px 16px rgba(38,38,38,.07)',
+          boxShadow: '0 6px 20px rgba(42,57,44,.22)',
         }}
       >
         <div style={{ font: `600 9.5px ${font.ui}`, letterSpacing: 3, color: color.gold }}>MEMBERSHIP</div>
-        <div style={{ margin: '12px 0 0', font: `500 44px/1 ${font.serif}`, color: color.ink }}>
-          $8<span style={{ font: `italic 400 16px ${font.serif}`, color: color.muted }}> a month</span>
+        <div style={{ margin: '12px 0 0', font: `500 44px/1 ${font.serif}`, color: color.cream }}>
+          $8<span style={{ font: `italic 400 16px ${font.serif}`, color: color.mutedGreen }}> a month</span>
         </div>
         <div style={{ margin: '16px 0 0', display: 'flex', flexDirection: 'column', gap: 10, textAlign: 'left' }}>
           {included.map((line) => (
             <div key={line} style={{ display: 'flex', gap: 9, alignItems: 'baseline' }}>
               <span style={{ color: color.gold }}>&#10038;</span>
-              <span style={{ font: `400 13px/1.5 ${font.body}`, color: color.inkSoft }}>{line}</span>
+              <span style={{ font: `400 12.5px/1.55 ${font.body}`, color: color.creamGreenBody }}>{line}</span>
             </div>
           ))}
         </div>

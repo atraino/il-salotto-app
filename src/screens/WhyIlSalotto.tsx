@@ -1,16 +1,16 @@
-import { GoldCaps, Screen } from '../components/Screen'
+import { Screen } from '../components/Screen'
 import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenProps } from '../navigation'
 
 /*
- * Left aligned, unlike the headings above them. Centred text is fine for a
- * line or two of flourish and punishing for three paragraphs: every line
- * starts in a different place and the eye has to hunt for it.
+ * The words on this screen are Alexis's, finalised, and are not to be
+ * rewritten or tightened. Sizes here are chosen so the whole letter sits on
+ * one screen without scrolling; if the type needs to move, move the type.
  */
 const paragraph = {
-  margin: '13px 0 0',
-  font: `400 13px/1.75 ${font.body}`,
+  margin: '11px 0 0',
+  font: `400 11.5px/1.68 ${font.body}`,
   color: color.ink,
   textAlign: 'left',
   textWrap: 'pretty',
@@ -19,54 +19,65 @@ const paragraph = {
 /** C. Why Il Salotto: a letter from the host, not a sales pitch. */
 export function WhyIlSalotto({ go }: ScreenProps) {
   return (
-    <Screen
-      scrollable
-      bodyStyle={{ padding: '24px 32px 26px', alignItems: 'center', textAlign: 'center' }}
-    >
-      <GoldCaps>WHY IL SALOTTO</GoldCaps>
-      <h1 style={{ margin: '10px 0 0', font: `500 30px/1.2 ${font.serif}`, color: color.olive }}>
-        The Italy I wish
-        <br />
-        I&rsquo;d known first.
-      </h1>
+    <Screen bodyStyle={{ padding: '14px 30px 18px', alignItems: 'center', textAlign: 'center' }}>
+      {/* the letter sits centred in whatever room is left, with Continue pinned */}
+      <div
+        style={{
+          flex: '1 1 auto',
+          minHeight: 0,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
+      <div style={{ font: `400 40px/1.05 ${font.script}`, color: color.terracotta }}>
+        Benvenuti nel salotto.
+      </div>
 
       <PhotoFrame
         label="drop: you in Italy, or Florence"
         photo="alexis"
-        width={146}
-        height={184}
-        radius="73px 73px 6px 6px"
-        innerRadius="66px 66px 4px 4px"
+        width={104}
+        height={130}
+        radius="52px 52px 5px 5px"
+        innerRadius="47px 47px 3px 3px"
         border="1px solid rgba(200,107,74,.4)"
-        pad={7}
-        labelPad={18}
-        /* smaller than it was: the letter grew, and the words are the point */
-        style={{ margin: '16px 0 0', flex: 'none' }}
+        pad={6}
+        labelSize={8}
+        labelPad={12}
+        style={{ margin: '10px 0 0', flex: 'none' }}
       />
 
       <p style={paragraph}>
-        Most people fall in love with a fantasy of Italy, and the fantasy doesn&rsquo;t survive the real country. I
-        know, because I came the same way. Then I spent a year in Florence studying Italy the way Italians study it,
-        with Italian professors: history, literature, politics, art, language. It changed everything. I finally
-        understood the place underneath the postcard.
+        I&rsquo;m Alexis, an Italian-American writer and artist. I moved to Italy three years ago, the way most people
+        come, in love with an idea of Italy. Then I got to study it deeply, the way Italians study their own country:
+        its literature, history, art, politics, language, and daily life. And I stayed, and lived it. The real Italy
+        turned out to be deeper and more complicated and more beautiful than the one I&rsquo;d imagined.
       </p>
       <p style={paragraph}>
-        Il Salotto is for anyone curious about Italy, in any way at all. If you are planning to move, this is the
-        groundwork nobody hands you. If you are Italian, come and sit with us and bring your own: your region, your
-        books, the things outsiders always get wrong. And if you have no plans to go anywhere and simply love this
-        country, its art and its writers, you belong here exactly as much.
+        Il Salotto is a place to get to know the real Italy, together. Whether you&rsquo;re planning to move,
+        you&rsquo;re Italian and want to join and share your own culture, or you simply love Italy and want to know it
+        more, you belong here. No background needed, just curiosity. I&rsquo;m still learning too, and I made this so
+        we could explore it alongside each other.
       </p>
-      <p style={paragraph}>
-        It is not a literature club. A book is only ever the door, and through it we get at a city, a history, an
-        argument, an ordinary Tuesday. Nor is it a course to sit through: we learn from each other, and the room is
-        at its best when someone says the thing the rest of us had not thought of.
-      </p>
-      <div style={{ margin: '14px 0 0', font: `400 40px/1 ${font.script}`, color: color.terracotta }}>Alexis</div>
 
-      <div style={{ margin: 'auto 0 0', paddingTop: 12, display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14 }}>
-        <div style={{ font: `italic 400 13px ${font.serif}`, color: color.muted }}>
-          Come sit a while. The door is open.
-        </div>
+      <div style={{ margin: '13px 0 0', font: `italic 400 15px/1.4 ${font.serif}`, color: color.olive }}>
+        There&rsquo;s a seat for you.
+      </div>
+      </div>
+
+      <div
+        style={{
+          flex: 'none',
+          paddingTop: 12,
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: 10,
+        }}
+      >
         <button
           type="button"
           className="btn-primary"
