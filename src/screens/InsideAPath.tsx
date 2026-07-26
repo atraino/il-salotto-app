@@ -43,7 +43,7 @@ const resources: Resource[] = [
   },
 ]
 
-/** 4. Inside a path, shown with THE CITY open as the example. */
+/** 4. Inside a path, shown with Il Luogo open as the example. */
 export function InsideAPath({ go }: ScreenProps) {
   return (
     <Screen nav="paths" go={go} bodyStyle={{ padding: '18px 26px 0' }}>
@@ -58,7 +58,7 @@ export function InsideAPath({ go }: ScreenProps) {
       </button>
 
       <GoldCaps size={10} spacing={3} style={{ margin: '12px 0 0' }}>
-        THE CITY
+        IL LUOGO
       </GoldCaps>
       <h1 style={{ margin: '4px 0 0', font: `500 30px/1.1 ${font.serif}`, color: color.ink }}>Trieste</h1>
       <div style={{ margin: '8px 0 0', font: `italic 400 14px/1.5 ${font.serif}`, color: color.olive }}>

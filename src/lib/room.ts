@@ -40,8 +40,18 @@ type Row = {
  */
 export function useRoom(table: Table, samples: Sample[], path?: string) {
   const { session, live } = useAuth()
-  const [entries, setEntries] = useState<Entry[]>(() => samples.map(fromSample))
+  /*
+   * With a database behind it the room shows real members and nobody else.
+   *
+   * It used to open with the samples and then swap in whatever the database
+   * returned, which meant an empty table wiped them: notes appeared for a
+   * moment and vanished, which is what it looked like from the outside too.
+   * Now the samples belong to prototype mode only, where there is no database
+   * to contradict them, and a live room that is empty says so honestly.
+   */
+  const [entries, setEntries] = useState<Entry[]>(() => (live ? [] : samples.map(fromSample)))
   const [loading, setLoading] = useState(live)
+  const [failed, setFailed] = useState<string | null>(null)
   const kind: Kind = table === 'notes' ? 'note' : 'post'
   const me = session?.user.id
 
@@ -60,9 +70,12 @@ export function useRoom(table: Table, samples: Sample[], path?: string) {
     ])
 
     if (rows.error) {
+      // Silence here is what made this look like data loss rather than a fault.
+      setFailed(rows.error.message)
       setLoading(false)
       return
     }
+    setFailed(null)
 
     const counts = new Map<string, number>()
     const mine = new Set<string>()
@@ -85,7 +98,14 @@ export function useRoom(table: Table, samples: Sample[], path?: string) {
   }, [table, path, kind, session, me])
 
   useEffect(() => {
-    if (live && session) void load()
+    if (!live) return
+    // Signed out in a live room: nothing to read, and nothing to wait for.
+    if (!session) {
+      setEntries([])
+      setLoading(false)
+      return
+    }
+    void load()
   }, [live, session, load])
 
   const write = useCallback(
@@ -112,7 +132,12 @@ export function useRoom(table: Table, samples: Sample[], path?: string) {
       const row: Record<string, string> = { author: session.user.id, body: text }
       if (path) row.path = path
       const { error } = await supabase.from(table).insert(row)
-      if (!error) await load()
+      if (error) {
+        setFailed(error.message)
+        return
+      }
+      setFailed(null)
+      await load()
     },
     [table, path, session, load],
   )
@@ -142,5 +167,5 @@ export function useRoom(table: Table, samples: Sample[], path?: string) {
     [entries, kind, session],
   )
 
-  return { entries, loading, write, toggleHeart }
+  return { entries, loading, failed, write, toggleHeart }
 }

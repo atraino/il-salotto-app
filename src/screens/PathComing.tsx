@@ -6,21 +6,22 @@ import type { ScreenProps } from '../navigation'
 export type ComingPath = {
   /** the Italian name, as it reads on How it works */
   italian: string
-  english: string
+  /** the same name as a heading. Italian only: the paths are not translated */
+  title: string
   line: string
   photo: string
 }
 
 export const comingPaths = {
   book: {
-    italian: 'IL LIBRO',
-    english: 'The Book',
+    italian: 'UN SENTIERO',
+    title: 'Il Libro',
     line: 'The novel itself, its humor and its modern soul.',
     photo: 'drop: the book on a desk',
   },
   soul: {
-    italian: 'L’ANIMA',
-    english: 'The Inner Thread',
+    italian: 'UN SENTIERO',
+    title: 'L’Anima',
     line: 'What it stirs in you, the stories we tell ourselves.',
     photo: 'drop: a window, a chair, soft light',
   },
@@ -47,7 +48,7 @@ export function PathComing({ path, go }: ScreenProps & { path: ComingPath }) {
         <GoldCaps size={10} spacing={3} style={{ margin: '18px 0 0' }}>
           {path.italian}
         </GoldCaps>
-        <h1 style={{ margin: '6px 0 0', font: `500 30px/1.1 ${font.serif}`, color: color.ink }}>{path.english}</h1>
+        <h1 style={{ margin: '6px 0 0', font: `500 30px/1.1 ${font.serif}`, color: color.ink }}>{path.title}</h1>
         <div
           style={{
             margin: '8px 0 0',
@@ -103,7 +104,7 @@ export function PathComing({ path, go }: ScreenProps & { path: ComingPath }) {
           }}
         >
           <div style={{ font: `italic 400 13px ${font.serif}`, color: color.muted }}>
-            The City is open and waiting in the meantime.
+            Il Luogo is open and waiting in the meantime.
           </div>
           <button
             type="button"
@@ -111,7 +112,7 @@ export function PathComing({ path, go }: ScreenProps & { path: ComingPath }) {
             style={{ padding: '13px 36px', font: `600 13.5px ${font.ui}` }}
             onClick={go && (() => go('path'))}
           >
-            Wander The City
+            Wander Il Luogo
           </button>
         </div>
       </div>

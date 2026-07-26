@@ -3,10 +3,11 @@ import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenProps } from '../navigation'
 
+/* The Italian names stand on their own. The line underneath says what each is. */
 const sentieri = [
-  { name: 'IL LIBRO', translation: '(the book)', line: 'the novel itself, its humor and its modern soul' },
-  { name: 'IL LUOGO', translation: '(the place)', line: 'Trieste and the Italy that made it' },
-  { name: 'L’ANIMA', translation: '(the soul)', line: 'what it stirs in you, the stories we tell ourselves' },
+  { name: 'IL LIBRO', line: 'the novel itself, its humor and its modern soul' },
+  { name: 'IL LUOGO', line: 'Trieste and the Italy that made it' },
+  { name: 'L’ANIMA', line: 'what it stirs in you, the stories we tell ourselves' },
 ]
 
 /** B. How it works: one doorway, three paths, told with type rather than diagram lines. */
@@ -56,16 +57,13 @@ export function HowItWorks({ go }: ScreenProps) {
       </div>
 
       <div style={{ display: 'flex', gap: 14, margin: '12px 0 0', width: '100%' }}>
-        {sentieri.map(({ name, translation, line }) => (
+        {sentieri.map(({ name, line }) => (
           <div key={name} style={{ flex: 1, display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
             <span style={{ width: 6, height: 6, borderRadius: 3, background: color.terracotta }} />
             <div style={{ margin: '8px 0 0', font: `600 10px ${font.ui}`, letterSpacing: 1.6, color: color.ink }}>
               {name}
             </div>
-            <div style={{ margin: '3px 0 0', font: `italic 400 10.5px ${font.serif}`, color: color.mutedWarm }}>
-              {translation}
-            </div>
-            <div style={{ margin: '5px 0 0', font: `400 11px/1.6 ${font.body}`, color: color.olive }}>
+            <div style={{ margin: '6px 0 0', font: `400 11px/1.6 ${font.body}`, color: color.olive }}>
               {line}
             </div>
           </div>

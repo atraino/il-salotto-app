@@ -33,7 +33,7 @@ export const screens: Record<ScreenId, ScreenEntry> = {
   home: { caption: '2 · Il Salotto, the room', Component: Home },
   porta: { caption: '3 · This month: La Porta', Component: LaPorta },
   sentieri: { caption: '4 · I Sentieri', Component: ISentieri },
-  path: { caption: '5 · Inside a path: The City', Component: InsideAPath },
+  path: { caption: '5 · Inside a path: Il Luogo', Component: InsideAPath },
   pathBook: {
     caption: '5a · Il Libro, coming',
     Component: (props) => PathComing({ ...props, path: comingPaths.book }),

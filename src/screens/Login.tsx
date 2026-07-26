@@ -1,6 +1,5 @@
 import { useState } from 'react'
 import { Screen } from '../components/Screen'
-import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import { useAuth } from '../lib/auth'
 import type { ScreenProps } from '../navigation'
@@ -9,195 +8,212 @@ const fieldStyle = {
   background: 'rgba(246,241,232,.05)',
   border: '1px solid rgba(201,162,74,.35)',
   borderRadius: 14,
-  padding: '15px 18px',
+  padding: '13px 18px',
+  width: '100%',
 } as const
 
 const labelStyle = { font: `600 9px ${font.ui}`, letterSpacing: 2, color: color.gold } as const
-const valueStyle = { font: `400 14px ${font.body}`, color: color.placeholderGreen, marginTop: 3 } as const
 
-/** F. Login: bentornata, the room just as she left it. Leads into Il Salotto. */
+type Mode = 'in' | 'up'
+
+/** F. The door. Email and password, nothing to leave the app for. */
 export function Login({ go }: ScreenProps) {
-  const { live, session, sendLink } = useAuth()
+  const { live, session, signIn, signUp } = useAuth()
+  const [mode, setMode] = useState<Mode>('in')
+  const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [nudge, setNudge] = useState(false)
-  const [sent, setSent] = useState(false)
-  const [sending, setSending] = useState(false)
+  const [busy, setBusy] = useState(false)
   const [problem, setProblem] = useState<string | null>(null)
 
-  // With a database behind it, one email is the whole sign-in: no password.
-  const logIn = async () => {
+  const joining = mode === 'up'
+
+  const submit = async () => {
+    setProblem(null)
+
     if (!live) {
-      if (!email.trim() || !password.trim()) {
-        setNudge(true)
-        return
-      }
       go?.('entering')
       return
     }
-
     if (session) {
       go?.('entering')
       return
     }
-
-    if (!email.trim()) {
-      setNudge(true)
+    if (joining && !name.trim()) {
+      setProblem('What should the room call you?')
+      return
+    }
+    if (!email.trim() || !password) {
+      setProblem('Your email and a password, please.')
       return
     }
 
-    setSending(true)
-    const error = await sendLink(email.trim())
-    setSending(false)
-    if (error) {
-      setProblem(error)
-      return
-    }
-    setSent(true)
+    setBusy(true)
+    const error = joining ? await signUp(email, password, name) : await signIn(email, password)
+    setBusy(false)
+    if (error) setProblem(error)
+    // On success the session arrives and the app walks itself into the room.
   }
-
-  const border = nudge ? '1px solid rgba(201,162,74,.75)' : fieldStyle.border
 
   return (
     <Screen
       tone="green"
+      scrollable
       bodyStyle={{
-        padding: '30px 34px 26px',
+        padding: '26px 32px 26px',
         alignItems: 'center',
         textAlign: 'center',
         // bentornata.jpg sits behind the whole screen, under a deep green scrim
         background:
-          'linear-gradient(rgba(30,42,32,.82), rgba(30,42,32,.9)), url(/photos/bentornata.jpg) center/cover no-repeat',
+          'linear-gradient(rgba(30,42,32,.86), rgba(30,42,32,.93)), url(/photos/bentornata.jpg) center/cover no-repeat',
       }}
     >
-      <div style={{ flex: '1 1 auto', display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 0, padding: '2px 0 6px' }}>
-      <PhotoFrame
-        tone="green"
-        label="drop: a door ajar, warm light"
-        photo="doorway"
-        width="auto"
-        height="100%"
-        radius="64px 64px 5px 5px"
-        innerRadius="58px 58px 3px 3px"
-        border="1px solid rgba(201,162,74,.6)"
-        pad={6}
-        labelPad={16}
-        style={{ aspectRatio: '128 / 164', maxHeight: 168, minHeight: 96 }}
-      />
-      </div>
-      <div style={{ font: `400 60px/1 ${font.script}`, color: color.gold, margin: '20px 0 0' }}>bentornata</div>
-      <div style={{ margin: '6px 0 0', font: `italic 400 15px/1.5 ${font.serif}`, color: color.cream }}>
-        Let yourself into Il Salotto.
+      <div style={{ font: `400 58px/1 ${font.script}`, color: color.gold, marginTop: 4 }}>bentornata</div>
+      <div style={{ margin: '4px 0 0', font: `400 13.5px/1.6 ${font.body}`, color: color.creamGreenBody }}>
+        {joining ? 'Take a seat. It only takes a moment.' : 'Welcome back to Il Salotto.'}
       </div>
 
+      {/* log in / create account, so neither is buried behind the other */}
       <div
         style={{
-          margin: '30px 0 0',
-          width: '100%',
+          margin: '20px 0 0',
           display: 'flex',
-          flexDirection: 'column',
-          gap: 12,
-          textAlign: 'left',
+          width: '100%',
+          gap: 4,
+          padding: 4,
+          borderRadius: 20,
+          background: 'rgba(246,241,232,.06)',
+          border: '1px solid rgba(201,162,74,.24)',
         }}
       >
-        <div className="field-wrap" style={{ ...fieldStyle, border }}>
+        {(['in', 'up'] as Mode[]).map((option) => (
+          <button
+            key={option}
+            type="button"
+            className="btn-quiet tappable"
+            aria-pressed={mode === option}
+            onClick={
+              go &&
+              (() => {
+                setMode(option)
+                setProblem(null)
+              })
+            }
+            style={{
+              flex: 1,
+              padding: '9px 0',
+              borderRadius: 16,
+              font: `600 12px ${font.ui}`,
+              background: mode === option ? color.gold : 'transparent',
+              color: mode === option ? '#2A392C' : color.placeholderGreen,
+              transition: 'background .18s ease, color .18s ease',
+            }}
+          >
+            {option === 'in' ? 'Log in' : 'Create account'}
+          </button>
+        ))}
+      </div>
+
+      <div style={{ margin: '14px 0 0', width: '100%', display: 'flex', flexDirection: 'column', gap: 10, textAlign: 'left' }}>
+        {joining && (
+          <div className="field-wrap" style={fieldStyle}>
+            <label style={labelStyle} htmlFor="il-salotto-name">
+              YOUR NAME
+            </label>
+            <input
+              id="il-salotto-name"
+              className="field-input"
+              type="text"
+              autoComplete="name"
+              placeholder="Alexis"
+              value={name}
+              onChange={(event) => setName(event.target.value)}
+              disabled={!go}
+            />
+          </div>
+        )}
+
+        <div className="field-wrap" style={fieldStyle}>
           <label style={labelStyle} htmlFor="il-salotto-email">
             EMAIL
           </label>
-          {go ? (
-            <input
-              id="il-salotto-email"
-              className="field-input"
-              type="email"
-              placeholder="you@somewhere.com"
-              value={email}
-              onChange={(event) => {
-                setEmail(event.target.value)
-                setNudge(false)
-              }}
-            />
-          ) : (
-            <div style={valueStyle}>you@somewhere.com</div>
-          )}
+          <input
+            id="il-salotto-email"
+            className="field-input"
+            type="email"
+            autoComplete="email"
+            autoCapitalize="none"
+            placeholder="you@somewhere.com"
+            value={email}
+            onChange={(event) => setEmail(event.target.value)}
+            disabled={!go}
+          />
         </div>
-        {!live && (
-          <div className="field-wrap" style={{ ...fieldStyle, border }}>
-            <label style={labelStyle} htmlFor="il-salotto-password">
-              PASSWORD
-            </label>
-            {go ? (
-              <input
-                id="il-salotto-password"
-                className="field-input"
-                type="password"
-                placeholder="••••••••"
-                value={password}
-                onChange={(event) => {
-                  setPassword(event.target.value)
-                  setNudge(false)
-                }}
-              />
-            ) : (
-              <div style={valueStyle}>&bull;&bull;&bull;&bull;&bull;&bull;&bull;&bull;</div>
-            )}
-          </div>
-        )}
-        {live && !sent && (
-          <div style={{ font: `italic 400 12.5px/1.5 ${font.serif}`, color: color.mutedGreen, textAlign: 'center' }}>
-            New here or coming back, it is the same door. Leave your email and we
-            send a link that opens it. No password to remember.
-          </div>
-        )}
-        {sent && (
-          <div style={{ font: `italic 400 13.5px/1.55 ${font.serif}`, color: color.gold, textAlign: 'center' }}>
-            Sent. Open the email and tap the link, and it lets you straight in.
-            It can take a minute, and it may be in your spam folder.
-          </div>
-        )}
-        {problem && (
-          <div style={{ font: `400 12px/1.5 ${font.ui}`, color: '#E0885F', textAlign: 'center' }}>{problem}</div>
-        )}
+
+        <div className="field-wrap" style={fieldStyle}>
+          <label style={labelStyle} htmlFor="il-salotto-password">
+            PASSWORD
+          </label>
+          <input
+            id="il-salotto-password"
+            className="field-input"
+            type="password"
+            autoComplete={joining ? 'new-password' : 'current-password'}
+            placeholder={joining ? 'at least six characters' : '••••••••'}
+            value={password}
+            onChange={(event) => setPassword(event.target.value)}
+            disabled={!go}
+          />
+        </div>
       </div>
+
+      {problem && (
+        <div
+          role="alert"
+          style={{ margin: '12px 0 0', font: `400 12px/1.55 ${font.ui}`, color: '#E0885F', textAlign: 'center' }}
+        >
+          {problem}
+        </div>
+      )}
 
       <button
         type="button"
         className="btn-primary"
-        style={{ margin: '22px 0 0', width: '100%', padding: '15px 0' }}
-        onClick={go && logIn}
-        disabled={sending}
+        style={{ margin: '16px 0 0', width: '100%', padding: '14px 0', font: `600 13.5px ${font.ui}` }}
+        onClick={go && submit}
+        disabled={busy}
       >
-        {!live || session ? 'Log in' : sending ? 'Sending...' : sent ? 'Send it again' : 'Send my link'}
+        {busy ? 'One moment...' : joining ? 'Create my account' : 'Log in'}
       </button>
-      <div style={{ margin: '18px 0 0', font: `500 12px ${font.ui}`, color: color.mutedGreen }}>
-        Not a member yet?{' '}
+
+      <div style={{ margin: '14px 0 0', font: `400 12px ${font.ui}`, color: color.mutedGreen }}>
+        {joining ? 'Already a member?' : 'New here?'}{' '}
         <button
           type="button"
           className="btn-quiet tappable"
-          onClick={go && (() => go('join'))}
+          onClick={
+            go &&
+            (() => {
+              setMode(joining ? 'in' : 'up')
+              setProblem(null)
+            })
+          }
           style={{ color: color.gold, textDecoration: 'underline', font: `500 12px ${font.ui}` }}
         >
-          See what is inside
+          {joining ? 'Log in' : 'Create an account'}
         </button>
       </div>
 
       <div
         style={{
           marginTop: 'auto',
-          width: '100%',
-          borderTop: '1px solid rgba(201,162,74,.3)',
-          paddingTop: 14,
-          flex: 'none',
+          paddingTop: 18,
+          font: `400 11.5px/1.6 ${font.body}`,
+          color: color.mutedGreen,
         }}
       >
-        <div style={{ font: `italic 400 13.5px/1.6 ${font.serif}`, color: color.placeholderGreen }}>
-          The link opens the room and keeps it open,
-          <br />
-          so you only ever do this once on a device.
-        </div>
+        You stay signed in on this device.
       </div>
-      <span aria-live="polite" style={{ position: 'absolute', width: 1, height: 1, overflow: 'hidden', clip: 'rect(0 0 0 0)' }}>
-        {nudge ? 'Your email and password, please.' : ''}
-      </span>
     </Screen>
   )
 }

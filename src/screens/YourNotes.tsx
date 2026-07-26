@@ -36,7 +36,7 @@ const samplePhotos = Object.fromEntries(roomSoFar.filter((s) => s.photo).map((s)
 
 /** 5. Your notes: the quiet, journal-toned heart of a path. */
 export function YourNotes({ go }: ScreenProps) {
-  const { entries, write, toggleHeart } = useRoom('notes', roomSoFar, 'city')
+  const { entries, loading, failed, write, toggleHeart } = useRoom('notes', roomSoFar, 'city')
   const [draft, setDraft] = useState('')
 
   const leaveNote = async () => {
@@ -48,7 +48,7 @@ export function YourNotes({ go }: ScreenProps) {
     <Screen nav="notes" go={go} scrollable={Boolean(go)} bodyStyle={{ padding: '20px 24px 0', gap: 13 }}>
       <div style={{ textAlign: 'center' }}>
         <GoldCaps size={10} spacing={3}>
-          ON THE PATH &middot; THE CITY
+          ON THE PATH &middot; IL LUOGO
         </GoldCaps>
         <h1 style={{ margin: '6px 0 0', font: `500 30px/1.1 ${font.serif}`, color: color.ink }}>Your notes</h1>
         <div style={{ margin: '8px auto 0', width: 36, height: 1, background: color.gold }} />
@@ -113,6 +113,25 @@ export function YourNotes({ go }: ScreenProps) {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 10, flex: '1 1 auto' }}>
+        {/* Nobody has written yet: say it, rather than inventing members. */}
+        {go && !loading && !failed && entries.length === 0 && (
+          <div style={{ padding: '20px 10px', textAlign: 'center' }}>
+            <div style={{ font: `italic 400 14px/1.5 ${font.serif}`, color: color.olive }}>
+              No notes on this path yet.
+            </div>
+            <div style={{ margin: '6px 0 0', font: `400 12.5px/1.6 ${font.body}`, color: color.muted }}>
+              Yours would be the first.
+            </div>
+          </div>
+        )}
+        {failed && (
+          <div
+            role="alert"
+            style={{ padding: '18px 10px', textAlign: 'center', font: `400 12px/1.6 ${font.ui}`, color: color.terracotta }}
+          >
+            The room could not be reached just now. Nothing has been lost.
+          </div>
+        )}
         {entries.map((note) => {
           const photo = samplePhotos[note.id]
           const name = note.author?.display_name ?? 'A member'

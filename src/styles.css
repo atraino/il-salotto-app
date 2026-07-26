@@ -439,6 +439,30 @@ button {
     width: 100%;
   }
 
+  /*
+   * The screen height comes down this chain, not from dvh.
+   *
+   * dvh is meant to track the visible area as the browser's toolbars come and
+   * go, and on iOS it disagrees with reality often enough that the screen
+   * stopped short and left a band of page background along the bottom of
+   * nearly every screen. A fixed body is exactly the visible viewport by
+   * definition, so 100% of it is the honest measurement.
+   */
+  #root,
+  .proto-stage,
+  .proto-stage .ph-fit,
+  .proto-stage .ph,
+  /*
+   * .screen-anim is the transition wrapper the prototype puts around each
+   * screen. It had no height of its own, so the screen's height: 100% had
+   * nothing to resolve against and collapsed to the height of its content —
+   * which is the whole white-space band, on every screen at once.
+   */
+  .proto-stage .screen-anim {
+    height: 100%;
+    min-height: 0;
+  }
+
   .shell-head {
     padding: 14px 18px 0;
     align-items: center;
@@ -475,7 +499,8 @@ button {
   /* full bleed: no bezel, no scaling, the screen simply is the screen */
   .proto-stage .ph-fit {
     width: 100%;
-    height: auto;
+    /* was auto, which broke the height chain and left the band of background */
+    height: 100%;
   }
 
   .proto-stage .ph {
@@ -490,7 +515,7 @@ button {
 
   .proto-stage .scr {
     border-radius: 0;
-    height: calc(100dvh - var(--app-chrome, 52px));
+    height: 100%;
   }
 
   /* the phone draws its own status bar above us; keep the space, drop the mockup one */
@@ -517,7 +542,25 @@ button {
     display: none;
   }
 
+  html,
+  body {
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+  }
+
+  #root,
+  .proto-stage,
+  .proto-stage .ph-fit,
+  .proto-stage .ph,
+  .proto-stage .screen-anim,
   .proto-stage .scr {
-    height: 100dvh;
+    height: 100%;
+    min-height: 0;
   }
 }

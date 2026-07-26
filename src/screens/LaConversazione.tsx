@@ -38,7 +38,7 @@ const prompt = 'What’s Italy stirring in you this week? A thought, a photo, a 
 
 /** 6. La Conversazione: the open room, warmer and busier than the notes page. */
 export function LaConversazione({ go }: ScreenProps) {
-  const { entries, write, toggleHeart } = useRoom('posts', table)
+  const { entries, loading, failed, write, toggleHeart } = useRoom('posts', table)
   const [draft, setDraft] = useState('')
 
   const share = async () => {
@@ -121,6 +121,25 @@ export function LaConversazione({ go }: ScreenProps) {
       </div>
 
       <div style={{ display: 'flex', flexDirection: 'column', gap: 9, flex: '1 1 auto' }}>
+        {/* An empty room says so, rather than showing people who do not exist. */}
+        {go && !loading && !failed && entries.length === 0 && (
+          <div style={{ padding: '22px 10px', textAlign: 'center' }}>
+            <div style={{ font: `italic 400 14px/1.5 ${font.serif}`, color: color.olive }}>
+              The table is set, and quiet.
+            </div>
+            <div style={{ margin: '6px 0 0', font: `400 12.5px/1.6 ${font.body}`, color: color.muted }}>
+              Say the first thing. Anything at all.
+            </div>
+          </div>
+        )}
+        {failed && (
+          <div
+            role="alert"
+            style={{ padding: '18px 10px', textAlign: 'center', font: `400 12px/1.6 ${font.ui}`, color: color.terracotta }}
+          >
+            The room could not be reached just now. Your notes are safe; pull down to try again.
+          </div>
+        )}
         {entries.map((post) => {
           const name = post.author?.display_name ?? 'A member'
           const where = post.author?.where_from

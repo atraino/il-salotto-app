@@ -22,7 +22,7 @@ type Path = {
 
 const paths: Path[] = [
   {
-    caps: 'THE BOOK',
+    caps: 'IL LIBRO',
     line: 'Why this novel matters, its humor and its modern soul.',
     photo: 'drop: the book on a desk',
     file: 'book-cover',
@@ -33,7 +33,7 @@ const paths: Path[] = [
     coming: true,
   },
   {
-    caps: 'THE CITY',
+    caps: 'IL LUOGO',
     line: 'Trieste, a place that was Austrian, Slovenian, Jewish, and Italian at once.',
     photo: 'drop: Trieste and the sea',
     file: 'trieste',
@@ -42,7 +42,7 @@ const paths: Path[] = [
     target: 'path',
   },
   {
-    caps: 'THE INNER THREAD',
+    caps: 'L’ANIMA',
     line: 'The stories we tell ourselves, and who we become.',
     photo: 'drop: a window, a chair, soft light',
     tone: 'cream',
