@@ -11,13 +11,14 @@ export function Landing({ go }: ScreenProps) {
       bodyStyle={{ padding: '26px 32px 26px', alignItems: 'center', textAlign: 'center' }}
     >
       <GoldCaps>YOUR BRIDGE TO ITALY</GoldCaps>
-      <div style={{ font: `400 78px/0.9 ${font.script}`, color: color.cream, margin: '20px 0 0' }}>Il Salotto</div>
+      <div style={{ font: `400 78px/0.9 ${font.script}`, color: color.cream, margin: '18px 0 0' }}>Il Salotto</div>
+      {/* Lora, not Playfair italic: this is a sentence to read, not a flourish */}
       <div
         style={{
           margin: '14px 0 0',
-          font: `italic 400 15px/1.55 ${font.serif}`,
+          font: `400 14px/1.7 ${font.body}`,
           color: color.gold,
-          maxWidth: 296,
+          maxWidth: 300,
         }}
       >
         The Italian sitting room, where each month we step through one door into the real Italy, and understand it
@@ -37,7 +38,12 @@ export function Landing({ go }: ScreenProps) {
           border="1px solid rgba(201,162,74,.55)"
           labelSize={10}
           labelPad={40}
-          style={{ aspectRatio: '272 / 296', maxHeight: 300, minHeight: 168 }}
+          /*
+           * The cap used to be 300, which left about a hundred pixels of dead
+           * green between the paragraph and the arch on a full-size phone. Let
+           * it take the room it is given; width runs out before height does.
+           */
+          style={{ aspectRatio: '272 / 296', maxHeight: 390, minHeight: 168 }}
         />
       </div>
 
@@ -50,7 +56,22 @@ export function Landing({ go }: ScreenProps) {
           gap: 12,
         }}
       >
-        <button type="button" className="btn-primary" onClick={go && (() => go('howItWorks'))}>
+        {/*
+          Same metrics as Continue on the cream screens, so the button reads as
+          one family throughout. The shadow is the difference: on deep green
+          behind a lit photograph, a flat fill sits on top of the picture
+          instead of in it.
+        */}
+        <button
+          type="button"
+          className="btn-primary"
+          style={{
+            padding: '13px 40px',
+            font: `600 13.5px ${font.ui}`,
+            boxShadow: '0 6px 18px rgba(20,28,21,.45)',
+          }}
+          onClick={go && (() => go('howItWorks'))}
+        >
           Step inside
         </button>
         <div style={{ font: `500 12px ${font.ui}`, color: color.mutedGreen }}>

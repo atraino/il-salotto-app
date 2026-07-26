@@ -18,7 +18,7 @@ export function HowItWorks({ go }: ScreenProps) {
       <div
         style={{
           margin: '11px 0 0',
-          font: `italic 400 13px/1.55 ${font.serif}`,
+          font: `400 12.5px/1.7 ${font.body}`,
           color: color.muted,
           maxWidth: 300,
         }}
@@ -42,8 +42,11 @@ export function HowItWorks({ go }: ScreenProps) {
       <div style={{ margin: '11px 0 0', font: `500 18px/1.25 ${font.serif}`, color: color.ink }}>
         This month&rsquo;s doorway: a book
       </div>
-      <div style={{ margin: '5px 0 0', font: `italic 400 13px/1.55 ${font.serif}`, color: color.olive }}>
-        Italo Svevo&rsquo;s La coscienza di Zeno
+      <div style={{ margin: '5px 0 0', font: `italic 500 13.5px/1.5 ${font.serif}`, color: color.olive }}>
+        Italo Svevo&rsquo;s <i>La coscienza di Zeno</i>
+      </div>
+      <div style={{ margin: '2px 0 0', font: `400 11.5px/1.5 ${font.body}`, color: color.mutedWarm }}>
+        &ldquo;Zeno&rsquo;s Conscience&rdquo; &middot; Trieste, 1923
       </div>
 
       <RuledCaps style={{ margin: '18px 0 0' }}>I SENTIERI</RuledCaps>
@@ -62,7 +65,7 @@ export function HowItWorks({ go }: ScreenProps) {
             <div style={{ margin: '3px 0 0', font: `italic 400 10.5px ${font.serif}`, color: color.mutedWarm }}>
               {translation}
             </div>
-            <div style={{ margin: '5px 0 0', font: `italic 400 11.5px/1.5 ${font.serif}`, color: color.olive }}>
+            <div style={{ margin: '5px 0 0', font: `400 11px/1.6 ${font.body}`, color: color.olive }}>
               {line}
             </div>
           </div>

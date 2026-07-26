@@ -28,11 +28,29 @@ export function LaPorta({ go }: ScreenProps) {
         LA PORTA DEL MESE
       </GoldCaps>
 
+      {/*
+        The arch used to be a hard 266x420. Added to everything below it that
+        came to more than the screen on a shorter phone, which pushed Step
+        through off the bottom. It now takes the room that is left and keeps
+        its proportions, so the screen balances instead of overflowing.
+      */}
       <div
         style={{
-          margin: '22px 0 0',
-          width: 266,
-          height: 420,
+          flex: '1 1 auto',
+          minHeight: 0,
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          width: '100%',
+          padding: '18px 0 0',
+        }}
+      >
+      <div
+        style={{
+          height: '100%',
+          aspectRatio: '266 / 420',
+          maxHeight: 420,
+          minHeight: 232,
           borderRadius: '133px 133px 0 0',
           border: '1px solid rgba(201,162,74,.55)',
           padding: 9,
@@ -87,10 +105,26 @@ export function LaPorta({ go }: ScreenProps) {
           </div>
         </div>
       </div>
+      </div>
+
+      {/* the door is a book: say which one, plainly */}
+      <div
+        style={{
+          margin: '16px 0 0',
+          textAlign: 'center',
+          font: `italic 500 13.5px/1.45 ${font.serif}`,
+          color: color.gold,
+        }}
+      >
+        Italo Svevo&rsquo;s <i>La coscienza di Zeno</i>
+      </div>
+      <div style={{ margin: '2px 0 0', font: `400 11px ${font.body}`, color: color.mutedGreen }}>
+        &ldquo;Zeno&rsquo;s Conscience&rdquo; &middot; Trieste, 1923
+      </div>
 
       <p
         style={{
-          margin: '22px 6px 0',
+          margin: '14px 6px 0',
           font: `400 13px/1.7 ${font.body}`,
           color: color.creamGreenBody,
           textAlign: 'center',
