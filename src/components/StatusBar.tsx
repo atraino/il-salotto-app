@@ -5,17 +5,13 @@ import type { Tone } from './PhotoFrame'
 export function StatusBar({ tone = 'cream' }: { tone?: Tone }) {
   const ink = tone === 'green' ? color.cream : color.ink
   return (
-    <div
-      className="status-bar"
-      style={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        padding: '16px 30px 4px',
-        font: `600 13px ${font.ui}`,
-        color: ink,
-      }}
-    >
+    /*
+     * Layout lives in styles.css, not here. An inline display beats any
+     * stylesheet rule, so while it was set here the phone's own rule could not
+     * hide this bar: the mockup's 9:41 drew straight over the real clock.
+     * Only the tone-dependent colour stays inline.
+     */
+    <div className="status-bar" style={{ font: `600 13px ${font.ui}`, color: ink }}>
       <span>9:41</span>
       <span
         style={{

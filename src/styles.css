@@ -76,6 +76,14 @@ a:hover {
   background: #2A392C;
 }
 
+/* The mockup's drawn 9:41 sliver. Layout here so a media query can remove it. */
+.status-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 30px 4px;
+}
+
 /* The scrollable body of a screen, below the status bar and above the nav. */
 .scr-body {
   flex: 1;
@@ -481,7 +489,15 @@ button {
    * stop above it. Without this the last button on a screen sits under the
    * bar and cannot be tapped.
    */
+  /*
+   * Keep clear of the phone's own furniture at both ends. Under the "default"
+   * status bar style the top inset is zero and this costs nothing; if a copy
+   * of the app is still installed with black-translucent baked in — iOS reads
+   * that setting once, when it is added to the home screen — the inset is real
+   * and this keeps the words out from under the clock either way.
+   */
   .proto-stage .scr {
+    padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
@@ -599,6 +615,12 @@ button {
   }
 
   .proto-stage .scr {
+    padding-top: env(safe-area-inset-top, 0px);
     padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+
+  /* the phone draws its own; the mockup's would land on top of it */
+  .proto-stage .status-bar {
+    display: none;
   }
 }
