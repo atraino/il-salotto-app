@@ -4,9 +4,14 @@
  */
 
 export const color = {
-  cream: '#F6F1E8',
-  creamCard: '#FDFAF3',
-  creamButtonText: '#FBF6EC',
+  /*
+   * Warm sand rather than paper white. The old set sat near #FDFAF3, which read
+   * as glare beside the deep green; these are pulled towards ochre so the two
+   * sit together the way lime plaster does beside a painted shutter.
+   */
+  cream: '#F4ECDC',
+  creamCard: '#FAF3E6',
+  creamButtonText: '#FCF7EC',
   terracotta: '#C86B4A',
   terracottaLight: '#E0885F',
   olive: '#6F7D4E',
@@ -23,7 +28,7 @@ export const color = {
   creamGreenBody: '#D8DCCB',
   /** placeholder labels on deep green */
   placeholderGreen: '#B9C4B3',
-  pageBackground: '#EFE9DD',
+  pageBackground: '#EAE2D2',
 } as const
 
 export const font = {
