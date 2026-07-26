@@ -1,5 +1,5 @@
 import type { CSSProperties, ReactNode } from 'react'
-import { font } from '../theme'
+import { color, font } from '../theme'
 import { BottomNav } from './BottomNav'
 import { StatusBar } from './StatusBar'
 import type { NavId, ScreenId } from '../navigation'
@@ -40,6 +40,47 @@ export function Screen({ tone = 'cream', nav, go, bodyStyle, scrollable, childre
       </div>
       {nav && <BottomNav active={nav} tone={tone} go={go} />}
     </div>
+  )
+}
+
+/**
+ * The way back, in one component so it sits and reads the same everywhere.
+ *
+ * The introduction is a sequence someone should be able to walk in both
+ * directions: the screens before signing in explain what this is, and a reader
+ * who wants the previous one back should not have to start over.
+ */
+export function BackLink({
+  go,
+  to,
+  label,
+  tone = 'cream',
+}: {
+  go?: (screen: ScreenId) => void
+  to: ScreenId
+  label: string
+  tone?: Tone
+}) {
+  return (
+    <button
+      type="button"
+      className="btn-quiet tappable"
+      aria-label={`Back to ${label}`}
+      onClick={go && (() => go(to))}
+      style={{
+        alignSelf: 'flex-start',
+        display: 'flex',
+        alignItems: 'center',
+        gap: 5,
+        font: `500 11.5px ${font.ui}`,
+        color: tone === 'green' ? color.mutedGreen : color.muted,
+        flex: 'none',
+        padding: '2px 6px 2px 0',
+      }}
+    >
+      <span style={{ fontSize: 16, lineHeight: 1 }}>&lsaquo;</span>
+      <span>{label}</span>
+    </button>
   )
 }
 

@@ -1,4 +1,4 @@
-import { Screen } from '../components/Screen'
+import { BackLink, Screen } from '../components/Screen'
 import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenProps } from '../navigation'
@@ -20,6 +20,7 @@ const paragraph = {
 export function WhyIlSalotto({ go }: ScreenProps) {
   return (
     <Screen bodyStyle={{ padding: '10px 28px 14px', alignItems: 'center', textAlign: 'center' }}>
+      <BackLink go={go} to="howItWorks" label="How it works" />
       <div
         style={{
           flex: '1 1 auto',

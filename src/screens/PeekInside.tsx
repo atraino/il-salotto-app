@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { GoldCaps, Screen } from '../components/Screen'
+import { BackLink, GoldCaps, Screen } from '../components/Screen'
 import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenProps } from '../navigation'
@@ -75,6 +75,7 @@ export function PeekInside({ go }: ScreenProps) {
 
   return (
     <Screen tone="green" bodyStyle={{ padding: '24px 30px 22px', alignItems: 'center', textAlign: 'center' }}>
+      <BackLink go={go} to="why" label="About" tone="green" />
       <h1 style={{ margin: 0, font: `500 27px/1.15 ${font.serif}`, color: color.cream }}>A look inside this month</h1>
       <div style={{ margin: '9px 0 0', width: 36, height: 1, background: color.gold }} />
       <GoldCaps size={9.5} spacing={3} style={{ margin: '14px 0 0' }}>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Screen } from '../components/Screen'
+import { BackLink, Screen } from '../components/Screen'
 import { color, font } from '../theme'
 import { useAuth } from '../lib/auth'
 import type { ScreenProps } from '../navigation'
@@ -68,6 +68,7 @@ export function Login({ go }: ScreenProps) {
           'linear-gradient(rgba(30,42,32,.86), rgba(30,42,32,.93)), url(/photos/bentornata.jpg) center/cover no-repeat',
       }}
     >
+      <BackLink go={go} to="join" label="Membership" tone="green" />
       <div style={{ font: `400 58px/1 ${font.script}`, color: color.gold, marginTop: 4 }}>bentornata</div>
       <div style={{ margin: '4px 0 0', font: `400 13.5px/1.6 ${font.body}`, color: color.creamGreenBody }}>
         {joining ? 'Take a seat. It only takes a moment.' : 'Welcome back to Il Salotto.'}

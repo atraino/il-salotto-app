@@ -1,4 +1,4 @@
-import { Screen } from '../components/Screen'
+import { BackLink, Screen } from '../components/Screen'
 import { PhotoFrame } from '../components/PhotoFrame'
 import { color, font } from '../theme'
 import type { ScreenProps } from '../navigation'
@@ -15,6 +15,7 @@ const included = [
 export function Join({ go }: ScreenProps) {
   return (
     <Screen bodyStyle={{ padding: '24px 30px 26px', alignItems: 'center', textAlign: 'center' }}>
+      <BackLink go={go} to="peek" label="A look inside" />
       <div style={{ font: `400 42px/1 ${font.script}`, color: color.terracotta }}>benvenuta</div>
       <h1 style={{ margin: '6px 0 0', font: `500 29px/1.2 ${font.serif}`, color: color.ink }}>
         Come in and stay a while
