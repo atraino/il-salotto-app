@@ -6,11 +6,11 @@ import type { ScreenProps } from '../navigation'
 /*
  * The words on this screen are Alexis's, finalised, and are not to be
  * rewritten or tightened. Sizes here are chosen so the whole letter sits on
- * one screen without scrolling; if the type needs to move, move the type.
+ * one screen; if something has to give, move the type, not the words.
  */
 const paragraph = {
-  margin: '11px 0 0',
-  font: `400 11.5px/1.68 ${font.body}`,
+  margin: '10px 0 0',
+  font: `400 11px/1.62 ${font.body}`,
   color: color.ink,
   textAlign: 'left',
   textWrap: 'pretty',
@@ -19,8 +19,7 @@ const paragraph = {
 /** C. Why Il Salotto: a letter from the host, not a sales pitch. */
 export function WhyIlSalotto({ go }: ScreenProps) {
   return (
-    <Screen bodyStyle={{ padding: '14px 30px 18px', alignItems: 'center', textAlign: 'center' }}>
-      {/* the letter sits centred in whatever room is left, with Continue pinned */}
+    <Screen bodyStyle={{ padding: '10px 28px 14px', alignItems: 'center', textAlign: 'center' }}>
       <div
         style={{
           flex: '1 1 auto',
@@ -32,52 +31,50 @@ export function WhyIlSalotto({ go }: ScreenProps) {
           width: '100%',
         }}
       >
-      <div style={{ font: `400 40px/1.05 ${font.script}`, color: color.terracotta }}>
-        Benvenuti nel salotto.
+        <div style={{ font: `400 36px/1.05 ${font.script}`, color: color.terracotta }}>
+          Benvenuti nel salotto.
+        </div>
+
+        {/* the photograph carries this screen: give it the room to */}
+        <PhotoFrame
+          label="drop: you in Italy, or Florence"
+          photo="alexis"
+          width={196}
+          height={244}
+          radius="98px 98px 7px 7px"
+          innerRadius="91px 91px 5px 5px"
+          border="1px solid rgba(200,107,74,.42)"
+          pad={7}
+          labelPad={20}
+          style={{ margin: '10px 0 0', flex: 'none' }}
+        />
+
+        <div style={{ margin: '11px 0 0', font: `italic 400 15.5px/1.4 ${font.serif}`, color: color.goldDeep }}>
+          Sono felice che tu sia qui.
+        </div>
+
+        <p style={paragraph}>
+          I&rsquo;m Alexis, an Italian-American writer and artist. I moved to Italy three years ago, the way most
+          people come, in love with an idea of Italy. Then I got to study it deeply, the way Italians study their own
+          country: its literature, history, art, politics, language, and daily life. And I stayed, and lived it. The
+          real Italy turned out to be deeper and more complicated and more beautiful than the one I&rsquo;d imagined.
+        </p>
+        <p style={paragraph}>
+          Il Salotto is a place to get to know the real Italy, together. Whether you&rsquo;re planning to move,
+          you&rsquo;re Italian and want to join and share your own culture, or you simply love Italy and want to know
+          it more, you belong here. No background needed, just curiosity. I&rsquo;m still learning too, and I made
+          this so we could explore it alongside each other.
+        </p>
+
+        <div style={{ margin: '11px 0 0', font: `italic 400 14px/1.4 ${font.serif}`, color: color.olive }}>
+          There&rsquo;s a seat for you.
+        </div>
+
+        {/* signed, the way a letter is */}
+        <div style={{ margin: '2px 0 0', font: `400 42px/1.1 ${font.script}`, color: color.terracotta }}>Alexis</div>
       </div>
 
-      <PhotoFrame
-        label="drop: you in Italy, or Florence"
-        photo="alexis"
-        width={104}
-        height={130}
-        radius="52px 52px 5px 5px"
-        innerRadius="47px 47px 3px 3px"
-        border="1px solid rgba(200,107,74,.4)"
-        pad={6}
-        labelSize={8}
-        labelPad={12}
-        style={{ margin: '10px 0 0', flex: 'none' }}
-      />
-
-      <p style={paragraph}>
-        I&rsquo;m Alexis, an Italian-American writer and artist. I moved to Italy three years ago, the way most people
-        come, in love with an idea of Italy. Then I got to study it deeply, the way Italians study their own country:
-        its literature, history, art, politics, language, and daily life. And I stayed, and lived it. The real Italy
-        turned out to be deeper and more complicated and more beautiful than the one I&rsquo;d imagined.
-      </p>
-      <p style={paragraph}>
-        Il Salotto is a place to get to know the real Italy, together. Whether you&rsquo;re planning to move,
-        you&rsquo;re Italian and want to join and share your own culture, or you simply love Italy and want to know it
-        more, you belong here. No background needed, just curiosity. I&rsquo;m still learning too, and I made this so
-        we could explore it alongside each other.
-      </p>
-
-      <div style={{ margin: '13px 0 0', font: `italic 400 15px/1.4 ${font.serif}`, color: color.olive }}>
-        There&rsquo;s a seat for you.
-      </div>
-      </div>
-
-      <div
-        style={{
-          flex: 'none',
-          paddingTop: 12,
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          gap: 10,
-        }}
-      >
+      <div style={{ flex: 'none', paddingTop: 10 }}>
         <button
           type="button"
           className="btn-primary"

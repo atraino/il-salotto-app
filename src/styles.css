@@ -427,9 +427,18 @@ button {
    * of background; overflow alone does not. Screens still scroll internally via
    * .scr-body below.
    */
+  /*
+   * --app-h is window.innerHeight, published by lib/viewport.ts.
+   *
+   * Every CSS way of asking how tall the screen is has failed here in turn:
+   * 100dvh disagreed with the visible area, and a chain of height: 100% broke
+   * at .screen-anim and still did not reach the bottom of an installed app.
+   * A measured pixel value cannot drift. The 100% fallbacks are there for the
+   * first paint, before the script has run.
+   */
   html,
   body {
-    height: 100%;
+    height: var(--app-h, 100%);
     overflow: hidden;
   }
 
@@ -439,28 +448,24 @@ button {
     width: 100%;
   }
 
-  /*
-   * The screen height comes down this chain, not from dvh.
-   *
-   * dvh is meant to track the visible area as the browser's toolbars come and
-   * go, and on iOS it disagrees with reality often enough that the screen
-   * stopped short and left a band of page background along the bottom of
-   * nearly every screen. A fixed body is exactly the visible viewport by
-   * definition, so 100% of it is the honest measurement.
-   */
   #root,
   .proto-stage,
   .proto-stage .ph-fit,
   .proto-stage .ph,
-  /*
-   * .screen-anim is the transition wrapper the prototype puts around each
-   * screen. It had no height of its own, so the screen's height: 100% had
-   * nothing to resolve against and collapsed to the height of its content —
-   * which is the whole white-space band, on every screen at once.
-   */
-  .proto-stage .screen-anim {
-    height: 100%;
+  /* the transition wrapper the prototype puts around each screen */
+  .proto-stage .screen-anim,
+  .proto-stage .scr {
+    height: var(--app-h, 100%);
     min-height: 0;
+  }
+
+  /*
+   * The screen's own background runs under the home indicator; its contents
+   * stop above it. Without this the last button on a screen sits under the
+   * bar and cannot be tapped.
+   */
+  .proto-stage .scr {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 
   .shell-head {
@@ -544,7 +549,7 @@ button {
 
   html,
   body {
-    height: 100%;
+    height: var(--app-h, 100%);
     overflow: hidden;
   }
 
@@ -560,7 +565,11 @@ button {
   .proto-stage .ph,
   .proto-stage .screen-anim,
   .proto-stage .scr {
-    height: 100%;
+    height: var(--app-h, 100%);
     min-height: 0;
+  }
+
+  .proto-stage .scr {
+    padding-bottom: env(safe-area-inset-bottom, 0px);
   }
 }
