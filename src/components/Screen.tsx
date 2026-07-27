@@ -1,4 +1,4 @@
-import type { CSSProperties, ReactNode } from 'react'
+import { useEffect, type CSSProperties, type ReactNode } from 'react'
 import { color, font } from '../theme'
 import { BottomNav } from './BottomNav'
 import { StatusBar } from './StatusBar'
@@ -32,6 +32,22 @@ type ScreenProps = {
 
 /** Status bar, body, and (where the design has one) the bottom nav. */
 export function Screen({ tone = 'cream', nav, go, bodyStyle, scrollable, children }: ScreenProps) {
+  /*
+   * Paint the page behind the app in this screen's own colour.
+   *
+   * In an installed app iOS fills the status bar strip with the page's
+   * background, so a cream page under a deep green screen showed up as a tan
+   * block above it. Following the screen means the strip disappears into
+   * whatever is below it. Phones only: on a desktop the gallery draws every
+   * screen at once and the page behind them should stay the page.
+   */
+  useEffect(() => {
+    if (!window.matchMedia('(max-width: 760px)').matches) return
+    const shade = tone === 'green' ? color.deepGreen : color.cream
+    document.body.style.background = shade
+    document.querySelector('meta[name="theme-color"]')?.setAttribute('content', shade)
+  }, [tone])
+
   return (
     <div className={tone === 'green' ? 'scr scr--green' : 'scr'}>
       <StatusBar tone={tone} />
